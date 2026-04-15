@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StudySync | Selecione seu Ambiente</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "on-primary-fixed": "#001c37",
+                "primary-fixed-dim": "#b0c8eb",
+                "on-tertiary-fixed-variant": "#6d3a00",
+                "secondary-fixed": "#85f6e5",
+                "surface-tint": "#49607e",
+                "on-error": "#ffffff",
+                "on-primary": "#ffffff",
+                "on-secondary-fixed": "#00201c",
+                "surface-container-highest": "#dfe3e7",
+                "surface-container": "#eaeef2",
+                "primary-container": "#0a2540",
+                "background": "#f6fafe",
+                "primary-fixed": "#d2e4ff",
+                "on-surface": "#171c1f",
+                "secondary": "#006a60",
+                "tertiary": "#1b0a00",
+                "surface-dim": "#d6dade",
+                "on-tertiary-fixed": "#2e1500",
+                "primary": "#000f22",
+                "tertiary-fixed": "#ffdcc2",
+                "surface-bright": "#f6fafe",
+                "on-secondary-container": "#007166",
+                "secondary-container": "#85f6e5",
+                "inverse-on-surface": "#edf1f5",
+                "on-primary-container": "#768dad",
+                "on-tertiary-container": "#cc7516",
+                "outline-variant": "#c4c6ce",
+                "surface-container-lowest": "#ffffff",
+                "secondary-fixed-dim": "#67d9c9",
+                "on-secondary-fixed-variant": "#005048",
+                "inverse-surface": "#2c3134",
+                "on-error-container": "#93000a",
+                "tertiary-container": "#3a1c00",
+                "on-background": "#171c1f",
+                "inverse-primary": "#b0c8eb",
+                "surface": "#f6fafe",
+                "on-surface-variant": "#43474d",
+                "tertiary-fixed-dim": "#ffb77a",
+                "surface-variant": "#dfe3e7",
+                "error-container": "#ffdad6",
+                "on-tertiary": "#ffffff",
+                "outline": "#74777e",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed-variant": "#314865",
+                "surface-container-low": "#f0f4f8",
+                "surface-container-high": "#e4e9ed",
+                "error": "#ba1a1a"
+              },
+              fontFamily: {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Container principal: fluxo linear/transacional (seleção de modo) -->
+<main class="min-h-screen flex flex-col items-center justify-center px-6 py-20 relative overflow-hidden">
+<!-- Elementos arquitetônicos de fundo -->
+<div class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+<div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-secondary-container/20 blur-[120px] rounded-full"></div>
+<div class="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-primary-container/10 blur-[120px] rounded-full"></div>
+</div>
+<!-- Cabeçalho de conteúdo -->
+<div class="relative z-10 w-full max-w-6xl mb-16 text-center md:text-left flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+<div class="max-w-2xl">
+<span class="font-label text-xs font-bold tracking-[0.15em] text-on-surface-variant uppercase mb-4 block">Selecione seu Ambiente</span>
+<h1 class="font-headline text-5xl md:text-6xl font-extrabold text-primary tracking-tight leading-tight mb-6">
+                    Defina sua <span class="text-secondary">Jornada Acadêmica</span>
+</h1>
+<p class="font-body text-lg text-on-surface-variant leading-relaxed">
+                    O StudySync adapta toda a sua arquitetura, cronogramas, métricas e ferramentas de foco para corresponder ao seu contexto acadêmico específico.
+                </p>
+</div>
+<div class="hidden md:block">
+<div class="p-4 bg-surface-container-lowest shadow-sm rounded-xl border border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">info</span>
+</div>
+<div class="text-sm">
+<p class="font-bold text-on-surface">Precisa de ajuda?</p>
+<p class="text-on-surface-variant">Troque de modo a qualquer momento nas configurações</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Cards de seleção de modo (grade assimétrica) -->
+<div class="relative z-10 w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+<!-- Card do modo universitário -->
+<div class="group relative bg-surface-container-lowest rounded-xl p-8 lg:p-12 transition-all duration-300 hover:translate-y-[-8px] flex flex-col justify-between overflow-hidden">
+<!-- Acento visual -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-surface-container-low rounded-full -mr-20 -mt-20 transition-transform duration-500 group-hover:scale-110"></div>
+<div class="relative z-10">
+<div class="w-16 h-16 bg-surface-container-high rounded-xl flex items-center justify-center mb-10 group-hover:bg-primary group-hover:text-on-primary transition-colors duration-300">
+<span class="material-symbols-outlined text-4xl" data-icon="school">school</span>
+</div>
+<h2 class="font-headline text-3xl font-bold text-primary mb-4">Modo Universitário</h2>
+<p class="font-body text-on-surface-variant leading-relaxed mb-8 max-w-md">
+                        Estruturado para o ensino superior. Acompanhe semestres, gerencie créditos de disciplinas, sincronize horários de aulas e organize marcos de projetos com recursos de colaboração.
+                    </p>
+<ul class="space-y-4 mb-12">
+<li class="flex items-center gap-3 text-sm font-medium text-on-surface">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="check_circle">check_circle</span>
+                            Acompanhamento de Semestre e CR
+                        </li>
+<li class="flex items-center gap-3 text-sm font-medium text-on-surface">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="check_circle">check_circle</span>
+                            Registro de Presença
+                        </li>
+<li class="flex items-center gap-3 text-sm font-medium text-on-surface">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="check_circle">check_circle</span>
+                            Espaço de Colaboração em Projetos
+                        </li>
+</ul>
+</div>
+<div class="relative z-10 pt-4">
+<button class="w-full md:w-auto px-10 py-4 bg-primary text-on-primary font-headline font-bold rounded-lg transition-all active:scale-95 shadow-[0_4px_20px_rgba(0,15,34,0.15)] flex items-center justify-center gap-3 group/btn">
+                        Entrar no Modo Universitário
+                        <span class="material-symbols-outlined transition-transform group-hover/btn:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Inserção de imagem decorativa -->
+<div class="absolute bottom-[-10%] right-[-10%] opacity-10 group-hover:opacity-20 transition-opacity">
+<img alt="Universidade" class="w-80 h-80 object-cover rounded-full" data-alt="Modern architectural university building with clean lines and glass facade during a bright afternoon with clear blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn_Ebj7eBKKxIukKLHMt_Hj7x-Hp6EzdC2BaixekCK7Zgv7ArIuUJlmDkmmwIsW_GKKOdEsLHxW6k-PLPzdtN-MDdnGRhT6LNQ_uIl4Bj51schC5xqlmViUveD25At6S6lwxb1w7K5xhbqvtPOuPiT-1bRavkK2jhUjMx_Ywwga0EipcdLT7d6hhHiDRv3ErorOmNZkhBwqKRq_eDgiOgNUs59J8chdEFnhEE4ZKqZ5630hHA7-UOtzU6wQ0KlAqyTxQab5ntyD-zZ"/>
+</div>
+</div>
+<!-- Card do modo concurso -->
+<div class="group relative bg-primary text-on-primary rounded-xl p-8 lg:p-12 transition-all duration-300 hover:translate-y-[-8px] flex flex-col justify-between overflow-hidden shadow-2xl">
+<!-- Acento visual -->
+<div class="absolute top-0 right-0 w-80 h-80 bg-primary-container rounded-full -mr-32 -mt-32 opacity-50 transition-transform duration-500 group-hover:scale-110"></div>
+<div class="relative z-10">
+<div class="w-16 h-16 bg-secondary-container text-on-secondary-container rounded-xl flex items-center justify-center mb-10">
+<span class="material-symbols-outlined text-4xl" data-icon="timer">timer</span>
+</div>
+<h2 class="font-headline text-3xl font-bold mb-4">Modo Concurso</h2>
+<p class="font-body text-on-primary-container leading-relaxed mb-8 max-w-md">
+                        Otimizado para preparação de alto nível. Aprofunde-se no domínio do edital, acompanhe métricas de desempenho ao longo do tempo e gerencie maratonas de estudo intensas de 12 a 18 meses.
+                    </p>
+<ul class="space-y-4 mb-12">
+<li class="flex items-center gap-3 text-sm font-medium">
+<span class="material-symbols-outlined text-secondary-container text-xl" data-icon="verified">verified</span>
+                            Heatmaps de Conclusão de Edital
+                        </li>
+<li class="flex items-center gap-3 text-sm font-medium">
+<span class="material-symbols-outlined text-secondary-container text-xl" data-icon="verified">verified</span>
+                            Análise de Simulados
+                        </li>
+<li class="flex items-center gap-3 text-sm font-medium">
+<span class="material-symbols-outlined text-secondary-container text-xl" data-icon="verified">verified</span>
+                            Sequenciamento de Metas de Longo Prazo
+                        </li>
+</ul>
+</div>
+<div class="relative z-10 pt-4">
+<button class="w-full md:w-auto px-10 py-4 bg-secondary text-on-secondary font-headline font-bold rounded-lg transition-all active:scale-95 shadow-[0_4px_20px_rgba(0,106,96,0.3)] flex items-center justify-center gap-3 group/btn">
+                        Entrar no Modo Concurso
+                        <span class="material-symbols-outlined transition-transform group-hover/btn:translate-x-1" data-icon="rocket_launch">rocket_launch</span>
+</button>
+</div>
+<!-- Inserção de imagem decorativa -->
+<div class="absolute bottom-[-5%] right-[-5%] opacity-10 group-hover:opacity-30 transition-opacity">
+<img alt="Escrivaninha de Estudo" class="w-72 h-72 object-cover rounded-full" data-alt="Focused desk setup with a mechanical clock, focused desk lamp, and neatly stacked books in a dark professional study environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpV1Zya4c7HZx2qRwFaujjMU0iA2cbI38jtQhHa59UMTeXpLuL_JmPV8HXwwVVrg9igrY7AfOLtDucsuendhlZYHUnxZ7XdElEwdLocCESwEs_DIhovctb5llyDtlWGr8iVApo9hxPFTCrl3xFpNYo5p7OQQ0ualyeTFGJ1Upmb_RBrjq-pqgn6Q-yQQDXu3ybwfgzL-6VtwVZV79g_TyoJtTP6FCdnvA2EB6Mt4I8O5URdMjU5n7WIGW4DYhHPTHW8cntR91_Znwd"/>
+</div>
+</div>
+</div>
+<!-- Link de ajuda no rodapé -->
+<div class="relative z-10 mt-16 text-center">
+<button class="font-body text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 mx-auto group">
+                Não tem certeza de qual escolher? 
+                <span class="text-secondary group-hover:underline">Comparar recursos</span>
+<span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+</button>
+</div>
+</main>
+</body></html>
