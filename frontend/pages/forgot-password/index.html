@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Recuperar Senha | StudySync</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#cc7516",
+                        "on-secondary-fixed": "#00201c",
+                        "primary-fixed": "#d2e4ff",
+                        "tertiary-fixed": "#ffdcc2",
+                        "on-background": "#171c1f",
+                        "surface-container": "#eaeef2",
+                        "secondary": "#006a60",
+                        "on-secondary-fixed-variant": "#005048",
+                        "tertiary-container": "#3a1c00",
+                        "tertiary-fixed-dim": "#ffb77a",
+                        "surface-bright": "#f6fafe",
+                        "inverse-on-surface": "#edf1f5",
+                        "surface-variant": "#dfe3e7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#dfe3e7",
+                        "secondary-fixed-dim": "#67d9c9",
+                        "on-primary-container": "#768dad",
+                        "background": "#f6fafe",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#85f6e5",
+                        "surface-container-low": "#f0f4f8",
+                        "on-primary-fixed": "#001c37",
+                        "primary-fixed-dim": "#b0c8eb",
+                        "surface-dim": "#d6dade",
+                        "secondary-container": "#85f6e5",
+                        "on-primary-fixed-variant": "#314865",
+                        "inverse-primary": "#b0c8eb",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#1b0a00",
+                        "primary": "#000f22",
+                        "primary-container": "#0a2540",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e4e9ed",
+                        "inverse-surface": "#2c3134",
+                        "on-secondary-container": "#007166",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f6fafe",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#43474d",
+                        "on-surface": "#171c1f",
+                        "surface-tint": "#49607e",
+                        "outline": "#74777e",
+                        "outline-variant": "#c4c6ce",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#6d3a00",
+                        "on-tertiary-fixed": "#2e1500"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "display": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface overflow-hidden">
+<main class="flex min-h-screen">
+<!-- Brand / Identity Section (Left) -->
+<section class="hidden lg:flex w-1/2 bg-primary-container relative flex-col justify-between p-16 overflow-hidden">
+<!-- Decorative Architectural Element -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-secondary to-transparent rounded-full -mr-96 -mt-96"></div>
+</div>
+<!-- Header / Logo Area -->
+<div class="relative z-10">
+<div class="flex items-center gap-3">
+<span class="font-headline font-extrabold text-white tracking-tighter text-3xl">StudySync</span>
+</div>
+</div>
+<!-- Center Tagline -->
+<div class="relative z-10 max-w-lg">
+<h1 class="font-headline font-bold text-5xl text-white leading-tight mb-6">
+                    Arquitetura da sua excelência acadêmica
+                </h1>
+<p class="text-on-primary-container text-lg max-w-md font-medium leading-relaxed">
+                    Ferramentas de alta performance desenhadas para o estudante que busca o topo. Organize sua jornada com precisão editorial.
+                </p>
+</div>
+<!-- Image/Visual Feature -->
+<div class="relative z-10 mt-auto">
+<div class="rounded-xl overflow-hidden shadow-2xl border border-white/5">
+<img alt="Academic Excellence Workspace" class="w-full h-64 object-cover" data-alt="A sophisticated top-down view of an organized wooden desk in a bright, modern minimalist library. The desk features a sleek high-end laptop showing academic data visualizations, a premium leather-bound notebook, and a clean cup of coffee. Soft natural morning light pours in from high windows, highlighting the professional navy and teal accents of the workspace. The atmosphere is quiet, focused, and intellectually stimulating, embodying an architectural scholar aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmaJypVbjD6i4tcIbrFu5lyTy9SK3qjQwxUY_K2l69knuhHmzlBGk7m3VL-lNQj5nQrOZLF4mwRY9sgUobheTeMWvT8Gv0te5v2HNao6u-fOs_vxk7a49xVOssZlWjd3f_N4XwT400xvzMlLR9Qe-2XKG-YfhXp8thFdzudLQSAgKr2S5ulWaGWqkAnsCOvzK0XFcB4z0uhCYcJNv4iC4rDYvaxNXk2VhrwBgheCzMx0HNRFrkbrcSIGdmtPSvN3Tfs2kj-LUUsrMN"/>
+</div>
+</div>
+</section>
+<!-- Recovery Form Section (Right) -->
+<section class="w-full lg:w-1/2 flex flex-col items-center justify-center p-8 md:p-24 bg-surface relative">
+<!-- Mobile Logo -->
+<div class="lg:hidden absolute top-12 left-12">
+<span class="font-headline font-extrabold text-primary tracking-tighter text-2xl">StudySync</span>
+</div>
+<div class="w-full max-w-[440px] space-y-12">
+<!-- Header Text -->
+<div class="space-y-4">
+<h2 class="font-headline font-bold text-4xl text-on-surface tracking-tight">Recuperar Senha</h2>
+<p class="text-on-surface-variant text-lg font-medium leading-snug">
+                        Insira seu e-mail para receber as instruções de redefinição.
+                    </p>
+</div>
+<!-- Form Container -->
+<form action="#" class="space-y-8" method="POST" onsubmit="return false;">
+<!-- Email Input Group -->
+<div class="space-y-3">
+<label class="block font-label text-[0.6875rem] font-bold uppercase tracking-wider text-on-surface-variant" for="email">
+                            E-mail
+                        </label>
+<div class="relative">
+<input class="w-full h-14 px-5 rounded-xl bg-surface-container-highest border-none text-on-surface placeholder:text-outline focus:ring-2 focus:ring-secondary focus:bg-surface-container-lowest transition-all duration-300 font-body" id="email" name="email" placeholder="nome@exemplo.com" type="email"/>
+</div>
+</div>
+<!-- Action Button -->
+<button class="group relative w-full h-14 bg-primary text-on-primary rounded-xl font-headline font-bold text-base shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all duration-200 overflow-hidden" type="submit">
+<span class="relative z-10">Enviar Instruções</span>
+<div class="absolute inset-0 bg-gradient-to-r from-primary to-primary-container opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</button>
+<!-- Back Navigation -->
+<div class="pt-4 flex justify-center">
+<a class="inline-flex items-center gap-2 font-label font-semibold text-secondary hover:text-on-secondary-fixed-variant transition-colors group" href="#">
+<span class="material-symbols-outlined text-sm transition-transform group-hover:-translate-x-1">arrow_back</span>
+<span class="text-sm">Voltar para o Login</span>
+</a>
+</div>
+</form>
+<!-- Support/Footer Info -->
+<div class="pt-8 border-t border-outline-variant/15">
+<p class="text-center font-label text-[0.6875rem] text-outline uppercase tracking-widest leading-loose">
+                        Problemas com o acesso? <br/>
+<a class="text-on-surface font-bold border-b border-on-surface/20 hover:border-on-surface transition-all" href="#">Contate o Suporte Acadêmico</a>
+</p>
+</div>
+</div>
+<!-- Floating Abstract Detail -->
+<div class="hidden md:block absolute bottom-12 right-12 opacity-5">
+<span class="font-headline font-extrabold text-[120px] leading-none select-none">SS</span>
+</div>
+</section>
+</main>
+</body></html>
