@@ -126,35 +126,60 @@
 <div class="w-full max-w-[440px] space-y-12">
 <!-- Header Text -->
 <div class="space-y-4">
-<h2 class="font-headline font-bold text-4xl text-on-surface tracking-tight">Recuperar Senha</h2>
-<p class="text-on-surface-variant text-lg font-medium leading-snug">
+<h2 class="font-headline font-bold text-4xl text-on-surface tracking-tight" id="page-title">Recuperar Senha</h2>
+<p class="text-on-surface-variant text-lg font-medium leading-snug" id="page-description">
                         Insira seu e-mail para receber as instruções de redefinição.
                     </p>
 </div>
+<div class="hidden rounded-xl border border-outline-variant/30 bg-surface-container-low px-4 py-3 text-sm font-medium text-on-surface" id="status-message"></div>
 <!-- Form Container -->
-<form action="#" class="space-y-8" method="POST" onsubmit="return false;">
+<form class="space-y-8" id="recovery-request-form">
 <!-- Email Input Group -->
 <div class="space-y-3">
 <label class="block font-label text-[0.6875rem] font-bold uppercase tracking-wider text-on-surface-variant" for="email">
                             E-mail
                         </label>
 <div class="relative">
-<input class="w-full h-14 px-5 rounded-xl bg-surface-container-highest border-none text-on-surface placeholder:text-outline focus:ring-2 focus:ring-secondary focus:bg-surface-container-lowest transition-all duration-300 font-body" id="email" name="email" placeholder="nome@exemplo.com" type="email"/>
+<input autocomplete="email" class="w-full h-14 px-5 rounded-xl bg-surface-container-highest border-none text-on-surface placeholder:text-outline focus:ring-2 focus:ring-secondary focus:bg-surface-container-lowest transition-all duration-300 font-body" id="email" name="email" placeholder="nome@exemplo.com" type="email"/>
 </div>
 </div>
 <!-- Action Button -->
-<button class="group relative w-full h-14 bg-primary text-on-primary rounded-xl font-headline font-bold text-base shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all duration-200 overflow-hidden" type="submit">
-<span class="relative z-10">Enviar Instruções</span>
+<button class="group relative w-full h-14 bg-primary text-on-primary rounded-xl font-headline font-bold text-base shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all duration-200 overflow-hidden disabled:cursor-not-allowed disabled:opacity-70" id="request-button" type="submit">
+<span class="relative z-10" id="request-button-text">Enviar Instruções</span>
 <div class="absolute inset-0 bg-gradient-to-r from-primary to-primary-container opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 </button>
+</form>
+<div class="hidden space-y-8" id="reset-password-wrapper">
+<form class="space-y-8" id="reset-password-form">
+<div class="space-y-3">
+<label class="block font-label text-[0.6875rem] font-bold uppercase tracking-wider text-on-surface-variant" for="new-password">
+                            Nova senha
+                        </label>
+<div class="relative">
+<input autocomplete="new-password" class="w-full h-14 px-5 rounded-xl bg-surface-container-highest border-none text-on-surface placeholder:text-outline focus:ring-2 focus:ring-secondary focus:bg-surface-container-lowest transition-all duration-300 font-body" id="new-password" name="new-password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="space-y-3">
+<label class="block font-label text-[0.6875rem] font-bold uppercase tracking-wider text-on-surface-variant" for="confirm-password">
+                            Confirmar senha
+                        </label>
+<div class="relative">
+<input autocomplete="new-password" class="w-full h-14 px-5 rounded-xl bg-surface-container-highest border-none text-on-surface placeholder:text-outline focus:ring-2 focus:ring-secondary focus:bg-surface-container-lowest transition-all duration-300 font-body" id="confirm-password" name="confirm-password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<button class="group relative w-full h-14 bg-primary text-on-primary rounded-xl font-headline font-bold text-base shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all duration-200 overflow-hidden disabled:cursor-not-allowed disabled:opacity-70" id="reset-button" type="submit">
+<span class="relative z-10" id="reset-button-text">Salvar nova senha</span>
+<div class="absolute inset-0 bg-gradient-to-r from-primary to-primary-container opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</button>
+</form>
+</div>
 <!-- Back Navigation -->
 <div class="pt-4 flex justify-center">
-<a class="inline-flex items-center gap-2 font-label font-semibold text-secondary hover:text-on-secondary-fixed-variant transition-colors group" href="#">
+<a class="inline-flex items-center gap-2 font-label font-semibold text-secondary hover:text-on-secondary-fixed-variant transition-colors group" href="../login/index.html" id="back-to-login">
 <span class="material-symbols-outlined text-sm transition-transform group-hover:-translate-x-1">arrow_back</span>
 <span class="text-sm">Voltar para o Login</span>
 </a>
 </div>
-</form>
 <!-- Support/Footer Info -->
 <div class="pt-8 border-t border-outline-variant/15">
 <p class="text-center font-label text-[0.6875rem] text-outline uppercase tracking-widest leading-loose">
@@ -169,4 +194,5 @@
 </div>
 </section>
 </main>
+<script type="module" src="../../assets/js/forgot-password.js"></script>
 </body></html>
