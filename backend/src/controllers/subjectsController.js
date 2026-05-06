@@ -1,4 +1,4 @@
-import { getAllSubjectsForUser, createSubject } from '../services/subjectService.js';
+import { getAllSubjectsForUser, createSubject, updateSubjectForUser, deleteSubjectForUser } from '../services/subjectService.js';
 
 export async function listSubjects(req, res, next) {
   try {
@@ -18,6 +18,32 @@ export async function addSubject(req, res, next) {
     const payload = req.body;
     const created = await createSubject(userId, payload);
     return res.status(201).json({ data: created });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function updateSubject(req, res, next) {
+  try {
+    const userId = req.user && req.user.id;
+    if (!userId) return res.status(401).json({ error: 'Unauthorized' });
+
+    const subjectId = req.params.subjectId;
+    const updated = await updateSubjectForUser(userId, subjectId, req.body || {});
+    return res.json({ data: updated });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function removeSubject(req, res, next) {
+  try {
+    const userId = req.user && req.user.id;
+    if (!userId) return res.status(401).json({ error: 'Unauthorized' });
+
+    const subjectId = req.params.subjectId;
+    const result = await deleteSubjectForUser(userId, subjectId);
+    return res.json({ data: result });
   } catch (err) {
     next(err);
   }
