@@ -12,6 +12,20 @@ cp .env.example .env
 npm run dev
 ```
 
+Prisma (ORM)
+
+```bash
+cd backend
+# ajuste DATABASE_URL e DIRECT_URL no .env
+npm run prisma:generate
+npm run prisma:test
+```
+
+Observacoes:
+- `DATABASE_URL`: usar a URL com pooler (`:6543` e `?pgbouncer=true`) para queries da aplicacao.
+- `DIRECT_URL`: usar a URL direta (`:5432`) para operacoes de schema/migracao.
+- Sem `DATABASE_URL`, o backend continua com fallback para Supabase client em parte dos servicos.
+
 Principais arquivos
 - `src/index.js` - entrypoint
 - `src/app.js` - configura Express e middlewares

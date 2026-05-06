@@ -1,8 +1,10 @@
 import express from 'express';
-import { listTasks } from '../../controllers/tasksController.js';
+import { listTasks, addTask } from '../../controllers/tasksController.js';
+import { requireAuth } from '../../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.get('/', listTasks);
+router.get('/', requireAuth, listTasks);
+router.post('/', requireAuth, addTask);
 
 export default router;

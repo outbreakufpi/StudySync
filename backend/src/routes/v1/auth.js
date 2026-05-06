@@ -19,4 +19,3 @@ router.post('/reset-password', resetPassword);
 router.get('/validate-session', validateSession);
 
 export default router;
-<parameter name="filePath">c:\Users\yuria\Desktop\UFPI\StudySync\backend\src\routes\v1\auth.js
