@@ -27,9 +27,9 @@
                 <span class="material-symbols-outlined">layers</span>
                 Modos
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors font-manrope text-sm font-medium tracking-wide" href="../dash-universidade/index.html">
-                <span class="material-symbols-outlined">calendar_today</span>
-                Calendário
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors font-manrope text-sm font-medium tracking-wide" href="../perfil/index.html">
+                <span class="material-symbols-outlined">account_circle</span>
+                Perfil
             </a>
             <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors font-manrope text-sm font-medium tracking-wide" href="../dash-universidade/index.html">
                 <span class="material-symbols-outlined">task_alt</span>
@@ -39,7 +39,7 @@
                 <span class="material-symbols-outlined">bar_chart</span>
                 Estatísticas
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors font-manrope text-sm font-medium tracking-wide" href="../dash-universidade/index.html">
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors font-manrope text-sm font-medium tracking-wide" href="../configuracoes/index.html">
                 <span class="material-symbols-outlined">settings</span>
                 Configurações
             </a>
@@ -48,13 +48,13 @@
             <button class="w-full py-3 bg-primary text-on-primary rounded-xl font-semibold text-sm transition-all duration-200 ease-in-out active:scale-95 shadow-lg shadow-primary/10">
                 Alternar Ambiente
             </button>
-            <div class="mt-6 flex items-center gap-3">
-                <img alt="User Profile Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="close-up portrait of a young male student with glasses in a library setting, soft bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPb_72_qanFXiIlIWq_9_AYyCIj62sS-D60zTQbh2IvRO4FRjAWFuqCY9xS20uQsUT4Fp3Ur4y4jgSkStMaEI5aXAC5uxQnus50peASsfTArLwa0V_uKVhes-u2VtLqKzO1PS0LJQcdrLbA0ZPpptj4uJqrMOcGb3tEhMv3JqRDcsYKjrJX_yPQ3ki316hMOGUWplUUSkRxrDwwdTvrmCT2LHTOCFSxVgDdAHzxduo92VU4yfTm4AO6d_rk9adH-sciIqhI2mijnkv"/>
+            <a class="mt-6 flex items-center gap-3 text-left w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary" href="../perfil/index.html">
+                <img id="profile-avatar" alt="User Profile Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="close-up portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPb_72_qanFXiIlIWq_9_AYyCIj62sS-D60zTQbh2IvRO4FRjAWFuqCY9xS20uQsUT4Fp3Ur4y4jgSkStMaEI5aXAC5uxQnus50peASsfTArLwa0V_uKVhes-u2VtLqKzO1PS0LJQcdrLbA0ZPpptj4uJqrMOcGb3tEhMv3JqRDcsYKjrJX_yPQ3ki316hMOGUWplUUSkRxrDwwdTvrmCT2LHTOCFSxVgDdAHzxduo92VU4yfTm4AO6d_rk9adH-sciIqhI2mijnkv"/>
                 <div class="overflow-hidden">
-                    <p class="text-sm font-bold truncate">Alex Chen</p>
-                    <p class="text-xs text-on-surface-variant">Estudante de Economia</p>
+                    <p id="profile-name" class="text-sm font-bold truncate">Alex Chen</p>
+                    <p id="profile-role" class="text-xs text-on-surface-variant">Estudante de Economia</p>
                 </div>
-            </div>
+            </a>
         </div>
     </aside>
     
@@ -68,10 +68,10 @@
                 <span class="material-symbols-outlined">notifications</span>
                 <span class="w-2 h-2 bg-error rounded-full -mt-4 -ml-2"></span>
             </div>
-            <div class="flex items-center gap-2 cursor-pointer active:opacity-70">
+            <a class="flex items-center gap-2 cursor-pointer active:opacity-70" href="../perfil/index.html">
                 <span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
-                <span class="text-sm font-medium">Minha Conta</span>
-            </div>
+                <span id="header-account-name" class="text-sm font-medium">Minha Conta</span>
+            </a>
         </div>
     </header>
     
@@ -101,57 +101,8 @@
                             <h3 class="text-xl font-bold tracking-tight">Minhas Disciplinas</h3>
                             <button class="text-secondary font-bold text-sm hover:underline">Gerenciar Tudo</button>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="group relative bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-primary/5">
-                                <button class="absolute top-4 right-4 p-1 text-on-surface-variant opacity-0 group-hover:opacity-100 hover:text-error transition-all">
-                                    <span class="material-symbols-outlined text-lg">close</span>
-                                </button>
-                                <div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center mb-4">
-                                    <span class="material-symbols-outlined text-on-primary-container">functions</span>
-                                </div>
-                                <h4 class="text-lg font-bold">Álgebra Linear</h4>
-                                <p class="text-sm text-on-surface-variant mt-1">Sala 402 • Prof. Aris</p>
-                                <div class="mt-6 flex items-center justify-between">
-                                    <span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-wider">Ativa</span>
-                                    <div class="flex -space-x-2">
-                                        <div class="w-6 h-6 rounded-full border-2 border-white bg-surface-container-high"></div>
-                                        <div class="w-6 h-6 rounded-full border-2 border-white bg-surface-container-highest"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="group relative bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-primary/5">
-                                <button class="absolute top-4 right-4 p-1 text-on-surface-variant opacity-0 group-hover:opacity-100 hover:text-error transition-all">
-                                    <span class="material-symbols-outlined text-lg">close</span>
-                                </button>
-                                <div class="w-10 h-10 bg-tertiary-fixed rounded-lg flex items-center justify-center mb-4">
-                                    <span class="material-symbols-outlined text-on-tertiary-fixed-variant">trending_up</span>
-                                </div>
-                                <h4 class="text-lg font-bold">Macroeconomia</h4>
-                                <p class="text-sm text-on-surface-variant mt-1">Online • Dr. Sterling</p>
-                                <div class="mt-6 flex items-center justify-between">
-                                    <span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-wider">Ativa</span>
-                                    <div class="flex -space-x-2">
-                                        <div class="w-6 h-6 rounded-full border-2 border-white bg-surface-container-high"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="group relative bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-primary/5">
-                                <button class="absolute top-4 right-4 p-1 text-on-surface-variant opacity-0 group-hover:opacity-100 hover:text-error transition-all">
-                                    <span class="material-symbols-outlined text-lg">close</span>
-                                </button>
-                                <div class="w-10 h-10 bg-secondary-fixed rounded-lg flex items-center justify-center mb-4">
-                                    <span class="material-symbols-outlined text-on-secondary-fixed-variant">architecture</span>
-                                </div>
-                                <h4 class="text-lg font-bold">Design Estrutural</h4>
-                                <p class="text-sm text-on-surface-variant mt-1">Lab 12 • Estúdio 4</p>
-                                <div class="mt-6 flex items-center justify-between">
-                                    <span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-wider">Ativa</span>
-                                </div>
-                            </div>
-                            <div class="border-2 border-dashed border-outline-variant rounded-xl p-6 flex flex-col items-center justify-center text-on-surface-variant hover:border-secondary hover:text-secondary cursor-pointer transition-all bg-white/30">
-                                <span class="material-symbols-outlined text-3xl mb-2">add_circle</span>
-                                <span class="text-sm font-bold">Adicionar Disciplina</span>
-                            </div>
+                        <div id="subjects-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="col-span-1 text-sm text-on-surface-variant">Carregando disciplinas...</div>
                         </div>
                     </div>
                     
@@ -266,7 +217,7 @@
         </div>
     </main>
     
-    <button class="fixed bottom-8 right-8 w-14 h-14 bg-secondary text-on-secondary rounded-full flex items-center justify-center shadow-xl shadow-secondary/40 hover:scale-110 active:scale-95 transition-all z-50">
+    <button id="create-task-btn" class="fixed bottom-8 right-8 w-14 h-14 bg-secondary text-on-secondary rounded-full flex items-center justify-center shadow-xl shadow-secondary/40 hover:scale-110 active:scale-95 transition-all z-50">
         <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'wght' 600;">add</span>
     </button>
 </body>

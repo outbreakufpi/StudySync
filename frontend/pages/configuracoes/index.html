@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>StudySync | Configurações</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="../../assets/js/tailwind-config.js"></script>
+    <link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+    <main class="min-h-screen px-6 py-10 md:px-10 lg:px-16">
+        <div class="max-w-5xl mx-auto">
+            <a class="inline-flex items-center gap-2 text-sm font-semibold text-secondary mb-8" href="../dash-universidade/index.html">
+                <span class="material-symbols-outlined text-sm">arrow_back</span>
+                Voltar ao painel
+            </a>
+
+            <section class="rounded-[2rem] bg-white p-8 md:p-10 shadow-sm space-y-8">
+                <div>
+                    <p class="text-xs uppercase tracking-[0.2em] text-secondary font-bold mb-3">Configurações</p>
+                    <h1 class="text-4xl font-extrabold tracking-tight">Preferências do sistema</h1>
+                    <p id="settings-status" class="text-on-surface-variant mt-3">Carregando configurações...</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="rounded-2xl bg-surface-container-low p-6">
+                        <label class="block text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-2" for="theme-select">Tema</label>
+                        <select id="theme-select" class="w-full rounded-xl border-none bg-surface-container-highest px-4 py-3 focus:ring-2 focus:ring-secondary">
+                            <option value="light">Claro</option>
+                            <option value="dark">Escuro</option>
+                        </select>
+                        <p class="text-sm text-on-surface-variant mt-3">Tema salvo no navegador deste dispositivo.</p>
+                    </div>
+
+                    <div class="rounded-2xl bg-surface-container-low p-6">
+                        <p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-2">Cache local</p>
+                        <button id="clear-cache-button" class="px-4 py-3 rounded-xl bg-primary text-on-primary font-semibold">Limpar cache</button>
+                        <p class="text-sm text-on-surface-variant mt-3">Remove a origem da API salva e o tema local.</p>
+                    </div>
+
+                    <div class="rounded-2xl bg-surface-container-low p-6 md:col-span-2">
+                        <p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-2">Acesso</p>
+                        <div class="flex flex-wrap items-center gap-3">
+                            <button id="settings-logout-button" class="px-4 py-3 rounded-xl bg-secondary text-on-secondary font-semibold">Sair da conta</button>
+                            <a href="../perfil/index.html" class="px-4 py-3 rounded-xl bg-surface-container-highest font-semibold">Ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-dashed border-outline-variant/40 p-6">
+                    <p class="text-sm text-on-surface-variant">Essas opções já funcionam hoje: tema, limpeza de cache e logout. Quando o backend expuser endpoints de preferências, eu conecto o restante por aqui.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script type="module" src="../../assets/js/settings-page.js"></script>
+</body>
+</html>

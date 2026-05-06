@@ -27,9 +27,9 @@
                 <span class="material-symbols-outlined">layers</span>
                 <span class="font-manrope text-sm font-bold tracking-wide">Modos</span>
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg" href="../dash-concurso/index.html">
-                <span class="material-symbols-outlined">calendar_today</span>
-                <span class="font-manrope text-sm font-medium tracking-wide">Calendário</span>
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg" href="../perfil/index.html">
+                <span class="material-symbols-outlined">account_circle</span>
+                <span class="font-manrope text-sm font-medium tracking-wide">Perfil</span>
             </a>
             <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg" href="../dash-concurso/index.html">
                 <span class="material-symbols-outlined">task_alt</span>
@@ -39,13 +39,20 @@
                 <span class="material-symbols-outlined">bar_chart</span>
                 <span class="font-manrope text-sm font-medium tracking-wide">Estatísticas</span>
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg" href="../dash-concurso/index.html">
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg" href="../configuracoes/index.html">
                 <span class="material-symbols-outlined">settings</span>
                 <span class="font-manrope text-sm font-medium tracking-wide">Configurações</span>
             </a>
         </nav>
         <div class="mt-auto px-4">
-            <button class="w-full py-3 px-4 bg-primary text-on-primary rounded-xl font-headline font-bold text-sm shadow-lg shadow-primary/20 flex items-center justify-center gap-2 active:scale-95 transition-all">
+            <a class="mt-6 flex items-center gap-3 w-full text-left rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary" href="../perfil/index.html">
+                <img id="profile-avatar" alt="User Profile Avatar" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPb_72_qanFXiIlIWq_9_AYyCIj62sS-D60zTQbh2IvRO4FRjAWFuqCY9xS20uQsUT4Fp3Ur4y4jgSkStMaEI5aXAC5uxQnus50peASsfTArLwa0V_uKVhes-u2VtLqKzO1PS0LJQcdrLbA0ZPpptj4uJqrMOcGb3tEhMv3JqRDcsYKjrJX_yPQ3ki316hMOGUWplUUSkRxrDwwdTvrmCT2LHTOCFSxVgDdAHzxduo92VU4yfTm4AO6d_rk9adH-sciIqhI2mijnkv"/>
+                <div class="overflow-hidden">
+                    <p id="profile-name" class="text-sm font-bold truncate">Alex Rivera</p>
+                    <p id="profile-role" class="text-xs text-on-surface-variant">Candidato Elite</p>
+                </div>
+            </a>
+            <button class="w-full py-3 px-4 mt-4 bg-primary text-on-primary rounded-xl font-headline font-bold text-sm shadow-lg shadow-primary/20 flex items-center justify-center gap-2 active:scale-95 transition-all">
                 <span class="material-symbols-outlined text-sm">auto_awesome</span>
                 Alternar Ambiente
             </button>
@@ -64,13 +71,13 @@
                 <span class="material-symbols-outlined">notifications</span>
                 <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
             </button>
-            <div class="flex items-center gap-3 cursor-pointer group">
+            <a class="flex items-center gap-3 cursor-pointer group" href="../perfil/index.html">
                 <div class="text-right">
-                    <p class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-teal-600 transition-colors">Alex Rivera</p>
-                    <p class="text-[10px] uppercase tracking-widest text-on-surface-variant">Candidato Elite</p>
+                    <p id="header-account-name" class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-teal-600 transition-colors">Alex Rivera</p>
+                    <p id="header-account-role" class="text-[10px] uppercase tracking-widest text-on-surface-variant">Candidato Elite</p>
                 </div>
                 <span class="material-symbols-outlined text-4xl text-slate-400">account_circle</span>
-            </div>
+            </a>
         </div>
     </header>
     
@@ -259,7 +266,7 @@
                 
                 <div class="p-8 border-l-4 border-secondary bg-secondary/5 rounded-r-xl">
                     <p class="text-secondary font-headline font-bold italic text-lg leading-relaxed">
-                        "A distância entre seus sonhos e a realidade se chama ação. Continue, Alex."
+                        "A distância entre seus sonhos e a realidade se chama ação. Continue, <span id="concurso-quote-name">Alex</span>."
                     </p>
                 </div>
             </div>
@@ -267,54 +274,11 @@
         
         <section class="mt-16">
             <h3 class="text-xl font-extrabold text-primary font-headline mb-8">Sessões Recentes</h3>
-            <div class="flex gap-6 overflow-x-auto pb-4 no-scrollbar">
-                <div class="min-w-[300px] bg-white p-6 rounded-xl shadow-sm border-b-4 border-primary">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary">history_edu</span>
-                        </div>
-                        <div>
-                            <p class="text-sm font-bold">Direito Constitucional</p>
-                            <p class="text-xs text-on-surface-variant">Hoje • 08:30 AM</p>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center text-xs font-bold text-on-surface-variant">
-                        <span>3h 45m de foco</span>
-                        <span class="text-secondary">Alta Profundidade</span>
-                    </div>
-                </div>
-                <div class="min-w-[300px] bg-white p-6 rounded-xl shadow-sm border-b-4 border-secondary">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-secondary">quiz</span>
-                        </div>
-                        <div>
-                            <p class="text-sm font-bold">Treino de Português</p>
-                            <p class="text-xs text-on-surface-variant">Ontem • 06:15 PM</p>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center text-xs font-bold text-on-surface-variant">
-                        <span>45 questões</span>
-                        <span class="text-secondary">88% de Precisão</span>
-                    </div>
-                </div>
-                <div class="min-w-[300px] bg-white p-6 rounded-xl shadow-sm border-b-4 border-on-tertiary-container">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center">
-                            <span class="material-symbols-outlined text-on-tertiary-container">fact_check</span>
-                        </div>
-                        <div>
-                            <p class="text-sm font-bold">Simulado TCU</p>
-                            <p class="text-xs text-on-surface-variant">2 dias atrás • 09:00 AM</p>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center text-xs font-bold text-on-surface-variant">
-                        <span>Simulação Completa</span>
-                        <span class="text-on-tertiary-container">Concluído</span>
-                    </div>
-                </div>
+            <div id="recent-sessions-list" class="flex gap-6 overflow-x-auto pb-4 no-scrollbar">
+                <div class="min-w-[300px] bg-white p-6 rounded-xl shadow-sm border-b-4 border-primary">Carregando sessões...</div>
             </div>
         </section>
     </main>
+    <script type="module" src="../../assets/js/dashboard.js"></script>
 </body>
 </html>

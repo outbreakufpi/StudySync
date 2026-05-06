@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>StudySync | Perfil</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="../../assets/js/tailwind-config.js"></script>
+    <link href="../../assets/css/style.css" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+    <main class="min-h-screen px-6 py-10 md:px-10 lg:px-16">
+        <div class="max-w-6xl mx-auto">
+            <a class="inline-flex items-center gap-2 text-sm font-semibold text-secondary mb-8" href="../dash-universidade/index.html">
+                <span class="material-symbols-outlined text-sm">arrow_back</span>
+                Voltar ao painel
+            </a>
+
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-1 rounded-[2rem] bg-surface-container-lowest p-8 shadow-sm">
+                    <div class="flex flex-col items-center text-center gap-4">
+                        <img id="profile-avatar" class="w-28 h-28 rounded-full object-cover bg-surface-container" alt="Avatar do perfil" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPb_72_qanFXiIlIWq_9_AYyCIj62sS-D60zTQbh2IvRO4FRjAWFuqCY9xS20uQsUT4Fp3Ur4y4jgSkStMaEI5aXAC5uxQnus50peASsfTArLwa0V_uKVhes-u2VtLqKzO1PS0LJQcdrLbA0ZPpptj4uJqrMOcGb3tEhMv3JqRDcsYKjrJX_yPQ3ki316hMOGUWplUUSkRxrDwwdTvrmCT2LHTOCFSxVgDdAHzxduo92VU4yfTm4AO6d_rk9adH-sciIqhI2mijnkv"/>
+                        <div>
+                            <h1 id="profile-name" class="text-3xl font-extrabold tracking-tight">Carregando...</h1>
+                            <p id="profile-role" class="text-sm text-on-surface-variant mt-1"></p>
+                            <p id="profile-email" class="text-sm text-on-surface-variant"></p>
+                        </div>
+                    </div>
+                    <div class="mt-8 grid grid-cols-3 gap-3 text-center" id="profile-stats"></div>
+                </div>
+
+                <div class="lg:col-span-2 space-y-8">
+                    <section class="rounded-[2rem] bg-white p-8 shadow-sm">
+                        <p class="text-xs uppercase tracking-[0.2em] text-secondary font-bold mb-3">Perfil</p>
+                        <h2 class="text-3xl font-extrabold tracking-tight" id="profile-greeting">Olá.</h2>
+                        <p class="text-on-surface-variant mt-2" id="profile-status">Carregando dados do perfil...</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                            <div class="rounded-2xl bg-surface-container-low p-5">
+                                <p class="text-xs uppercase tracking-widest text-on-surface-variant">Modo atual</p>
+                                <p id="profile-mode" class="text-lg font-bold mt-2">-</p>
+                            </div>
+                            <div class="rounded-2xl bg-surface-container-low p-5">
+                                <p class="text-xs uppercase tracking-widest text-on-surface-variant">Criado em</p>
+                                <p id="profile-created" class="text-lg font-bold mt-2">-</p>
+                            </div>
+                            <div class="rounded-2xl bg-surface-container-low p-5 md:col-span-2">
+                                <p class="text-xs uppercase tracking-widest text-on-surface-variant">Atualizado em</p>
+                                <p id="profile-updated" class="text-lg font-bold mt-2">-</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="rounded-[2rem] bg-white p-8 shadow-sm">
+                        <div class="flex items-center justify-between gap-4 mb-6">
+                            <div>
+                                <p class="text-xs uppercase tracking-[0.2em] text-secondary font-bold mb-2">Detalhes</p>
+                                <h3 class="text-2xl font-extrabold tracking-tight">Metadados do usuário</h3>
+                            </div>
+                            <button id="logout-button" class="px-4 py-2 rounded-xl bg-surface-container-low font-semibold text-sm hover:bg-surface-container transition-colors">Sair</button>
+                        </div>
+                        <div id="profile-metadata" class="divide-y divide-outline-variant/20"></div>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script type="module" src="../../assets/js/profile-page.js"></script>
+</body>
+</html>
