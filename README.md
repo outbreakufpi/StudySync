@@ -91,7 +91,7 @@ Fluxo sugerido de teste:
 - `backend/` - API Node + Express
 - `frontend/` - páginas estáticas e scripts da interface
 
-## Guia rápido para amigos
+## Guia rápido
 
 Se alguém quiser testar sem abrir o projeto inteiro no editor, o caminho é este:
 
@@ -101,6 +101,3 @@ Se alguém quiser testar sem abrir o projeto inteiro no editor, o caminho é est
 4. criar conta ou entrar
 5. navegar entre os dois modos e testar os fluxos acima
 
-## Mensagem de commit sugerida
-
-`docs: adicionar guia de teste local e validação dos fluxos principais`
