@@ -122,38 +122,40 @@
                             <span class="bg-surface-container px-3 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider">Visão Semanal</span>
                         </div>
                     </div>
-                    <div class="flex items-end justify-between h-40 md:h-48 gap-2 md:gap-4 px-2 md:px-4">
+                    <div id="contest-weekly-card" class="flex items-end justify-between h-40 md:h-48 gap-2 md:gap-4 px-2 md:px-4">
                         <div class="absolute left-6 top-24 md:top-28 text-on-primary/80">
                             <p class="text-[10px] uppercase tracking-[0.2em] font-bold">Total</p>
                             <p id="contest-total-hours" class="text-3xl md:text-4xl font-extrabold font-headline">0h</p>
                         </div>
-                        <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
-                            <div class="w-full bg-surface-container rounded-t-lg transition-all duration-500 hover:bg-secondary-container" style="height: 40%"></div>
-                            <span class="text-[8px] md:text-[10px] font-bold text-on-surface-variant uppercase">Seg</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
-                            <div class="w-full bg-surface-container rounded-t-lg transition-all duration-500 hover:bg-secondary-container" style="height: 65%"></div>
-                            <span class="text-[8px] md:text-[10px] font-bold text-on-surface-variant uppercase">Ter</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
-                            <div class="w-full bg-secondary rounded-t-lg transition-all duration-500 shadow-[0_0_15px_rgba(0,106,96,0.3)]" style="height: 90%"></div>
-                            <span class="text-[8px] md:text-[10px] font-bold text-on-surface uppercase font-extrabold">Qua</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
-                            <div class="w-full bg-surface-container rounded-t-lg transition-all duration-500 hover:bg-secondary-container" style="height: 55%"></div>
-                            <span class="text-[8px] md:text-[10px] font-bold text-on-surface-variant uppercase">Qui</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
-                            <div class="w-full bg-surface-container rounded-t-lg transition-all duration-500 hover:bg-secondary-container" style="height: 75%"></div>
-                            <span class="text-[8px] md:text-[10px] font-bold text-on-surface-variant uppercase">Sex</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
-                            <div class="w-full bg-surface-container rounded-t-lg transition-all duration-500 hover:bg-secondary-container" style="height: 30%"></div>
-                            <span class="text-[8px] md:text-[10px] font-bold text-on-surface-variant uppercase">Sáb</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
-                            <div class="w-full bg-surface-container rounded-t-lg transition-all duration-500 hover:bg-secondary-container" style="height: 45%"></div>
-                            <span class="text-[8px] md:text-[10px] font-bold text-on-surface-variant uppercase">Dom</span>
+                        <div id="contest-weekly-bars" class="flex items-end justify-between w-full gap-2">
+                            <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
+                                <div class="w-full contest-week-bar rounded-t-lg transition-all duration-500" data-day="1" style="height:8%"></div>
+                                <span class="text-[8px] md:text-[10px] font-bold text-on-surface-variant uppercase">Seg</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
+                                <div class="w-full contest-week-bar rounded-t-lg transition-all duration-500" data-day="2" style="height:8%"></div>
+                                <span class="text-[8px] md:text-[10px] font-bold text-on-surface-variant uppercase">Ter</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
+                                <div class="w-full contest-week-bar rounded-t-lg transition-all duration-500" data-day="3" style="height:8%"></div>
+                                <span class="text-[8px] md:text-[10px] font-bold text-on-surface uppercase font-extrabold">Qua</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
+                                <div class="w-full contest-week-bar rounded-t-lg transition-all duration-500" data-day="4" style="height:8%"></div>
+                                <span class="text-[8px] md:text-[10px] font-bold text-on-surface-variant uppercase">Qui</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
+                                <div class="w-full contest-week-bar rounded-t-lg transition-all duration-500" data-day="5" style="height:8%"></div>
+                                <span class="text-[8px] md:text-[10px] font-bold text-on-surface-variant uppercase">Sex</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
+                                <div class="w-full contest-week-bar rounded-t-lg transition-all duration-500" data-day="6" style="height:8%"></div>
+                                <span class="text-[8px] md:text-[10px] font-bold text-on-surface-variant uppercase">Sáb</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1 md:gap-2 flex-1">
+                                <div class="w-full contest-week-bar rounded-t-lg transition-all duration-500" data-day="0" style="height:8%"></div>
+                                <span class="text-[8px] md:text-[10px] font-bold text-on-surface-variant uppercase">Dom</span>
+                            </div>
                         </div>
                     </div>
                 </div>

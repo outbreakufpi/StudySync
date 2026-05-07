@@ -760,6 +760,8 @@ async function fetchSessions() {
     }
 
     renderContestMetrics(sessions);
+    // render weekly bars chart for contest mode
+    renderContestWeekly(sessions);
     renderContestSimulados(sessions, subjectLookup);
     const masterySubjects = await fetchSubjectsForStatsOnly('competitive');
     renderContestMastery(masterySubjects, sessions);
@@ -1006,6 +1008,65 @@ function renderContestFocus(sessions, subjectLookup = new Map()) {
   if (subjectEl) subjectEl.textContent = subjectName;
   if (durationEl) durationEl.textContent = formatMinutesLabel(durationMinutes);
   if (scoreEl) scoreEl.textContent = score;
+}
+
+function renderContestWeekly(sessions = []) {
+  const container = document.getElementById('contest-weekly-bars');
+  if (!container) return;
+  const bars = Array.from(container.querySelectorAll('.contest-week-bar'));
+  if (!bars.length) return;
+
+  // totals indexed by Sunday(0) .. Saturday(6)
+  const totals = Array(7).fill(0);
+  const now = new Date();
+  const today = now.getDay();
+
+  // compute start of current week (Monday)
+  const diffToMonday = (today + 6) % 7; // days since Monday
+  const monday = new Date(now);
+  monday.setHours(0, 0, 0, 0);
+  monday.setDate(now.getDate() - diffToMonday);
+  const weekEnd = new Date(monday);
+  weekEnd.setDate(monday.getDate() + 7);
+
+  for (const session of sessions || []) {
+    const started = parseDateValue(session?.started_at || session?.created_at);
+    if (!started) continue;
+    if (started < monday || started >= weekEnd) continue;
+    const minutes = getSessionDurationMinutes(session) || 0;
+    const day = started.getDay();
+    totals[day] += minutes;
+  }
+
+  const maxMinutes = Math.max(...totals, 1);
+  const shortWeekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+
+  for (const el of bars) {
+    const dayAttr = Number(el.dataset.day);
+    const mins = totals[dayAttr] || 0;
+    let percent = Math.round((mins / maxMinutes) * 100);
+    if (mins > 0 && percent < 10) percent = 10;
+    if (mins === 0) percent = 6;
+    el.style.height = `${percent}%`;
+    try { el.setAttribute('aria-label', `${formatMinutesLabel(mins)} na semana`); } catch (e) {}
+
+    // ensure bars are visible: use secondary color for bars and lower opacity when empty
+    el.classList.add('bg-secondary');
+    if (mins === 0) {
+      el.classList.add('opacity-30');
+    } else {
+      el.classList.remove('opacity-30');
+    }
+
+    if (dayAttr === today) {
+      el.classList.add('ring-2', 'ring-secondary/30');
+    } else {
+      el.classList.remove('ring-2', 'ring-secondary/30');
+    }
+
+    const lbl = el.parentElement?.querySelector('span');
+    if (lbl) lbl.textContent = shortWeekdays[dayAttr] || '';
+  }
 }
 
 function formatMinutesLabel(totalMinutes) {
