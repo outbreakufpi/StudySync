@@ -1,4 +1,4 @@
-import { buildApiUrlAsync, TOKEN_KEY } from './runtime-config.js';
+import { buildApiUrlAsync, TOKEN_KEY } from './runtime-config.js?v=20260507';
 
 function escapeHtml(str) {
   return String(str)
@@ -39,10 +39,15 @@ async function loadProfilePage() {
   try {
     const session = await fetchJson('/api/v1/auth/validate-session');
     const user = session?.user || {};
-    const metadata = user?.user_metadata || {};
-    const name = metadata.full_name || metadata.fullname || metadata.name || user.email || 'Você';
-    const role = metadata.role || metadata.course || 'Estudante';
-    const avatar = metadata.avatar_url || metadata.avatar || '';
+    const profile = session?.profile || user?.profile || {};
+    const metadata = profile?.metadata || user?.user_metadata || {};
+    const name = profile?.full_name || metadata.full_name || metadata.fullname || metadata.name || user.email || 'Você';
+    const role = profile?.current_mode === 'competitive'
+      ? 'Concurseiro'
+      : profile?.current_mode === 'university'
+        ? 'Universitário'
+        : metadata.role || metadata.course || 'Estudante';
+    const avatar = profile?.avatar_url || metadata.avatar_url || metadata.avatar || '';
 
     const profileName = document.getElementById('profile-name');
     const profileEmail = document.getElementById('profile-email');
@@ -59,13 +64,13 @@ async function loadProfilePage() {
     if (profileEmail) profileEmail.textContent = user.email || 'Sem e-mail';
     if (profileRole) profileRole.textContent = role;
     if (profileAvatar && avatar) profileAvatar.src = avatar;
-    if (profileMode) profileMode.textContent = metadata.current_mode || 'university';
-    if (profileCreated) profileCreated.textContent = formatDate(user.created_at);
-    if (profileUpdated) profileUpdated.textContent = formatDate(user.updated_at);
+    if (profileMode) profileMode.textContent = profile?.current_mode || metadata.current_mode || 'university';
+    if (profileCreated) profileCreated.textContent = formatDate(profile?.created_at || user.created_at);
+    if (profileUpdated) profileUpdated.textContent = formatDate(profile?.updated_at || user.updated_at);
     if (profileGreeting) profileGreeting.textContent = `Olá, ${name}.`;
 
     if (profileMetadata) {
-      const rows = Object.entries(metadata)
+      const rows = Object.entries(metadata || {})
         .map(([key, value]) => `<div class="flex items-center justify-between gap-4 py-3 border-b border-outline-variant/20"><span class="text-sm text-on-surface-variant">${escapeHtml(key)}</span><span class="text-sm font-medium text-on-surface">${escapeHtml(typeof value === 'object' ? JSON.stringify(value) : value ?? '')}</span></div>`)
         .join('');
       profileMetadata.innerHTML = rows || '<p class="text-sm text-on-surface-variant">Sem metadados adicionais.</p>';
@@ -93,8 +98,19 @@ window.addEventListener('DOMContentLoaded', loadProfilePage);
 
 const logoutButton = document.getElementById('logout-button');
 if (logoutButton) {
-  logoutButton.addEventListener('click', () => {
-    localStorage.removeItem(TOKEN_KEY);
-    window.location.href = '../login/index.html';
+  logoutButton.addEventListener('click', async () => {
+    try {
+      const token = localStorage.getItem(TOKEN_KEY);
+      if (token) {
+        const url = await buildApiUrlAsync('/api/v1/auth/logout');
+        await fetch(url, {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${token}` },
+        }).catch(() => null);
+      }
+    } finally {
+      localStorage.removeItem(TOKEN_KEY);
+      window.location.href = '../login/index.html';
+    }
   });
 }

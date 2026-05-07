@@ -7,24 +7,15 @@ Como rodar
 ```bash
 cd backend
 npm install
-cp .env.example .env
-# editar .env com sua URL e keys do Supabase
+# se backend/.env nao existir, crie-o uma unica vez com:
+# cp .env.example .env
+# depois, edite .env com sua URL e a anon key do Supabase
 npm run dev
 ```
 
-Prisma (ORM)
-
-```bash
-cd backend
-# ajuste DATABASE_URL e DIRECT_URL no .env
-npm run prisma:generate
-npm run prisma:test
-```
-
 Observacoes:
-- `DATABASE_URL`: usar a URL com pooler (`:6543` e `?pgbouncer=true`) para queries da aplicacao.
-- `DIRECT_URL`: usar a URL direta (`:5432`) para operacoes de schema/migracao.
-- Sem `DATABASE_URL`, o backend continua com fallback para Supabase client em parte dos servicos.
+- O backend agora usa Supabase direto para auth e persistencia.
+- Se voce quiser rodar scripts SQL manuais, use o editor do Supabase e aplique a policy de insert em `public.profiles`.
 
 Principais arquivos
 - `src/index.js` - entrypoint
@@ -37,10 +28,11 @@ Principais arquivos
 
 Rotas stub disponíveis
 - `GET /health`
+- `GET /api/v1/auth/me`
 - `GET /api/v1/subjects`
 - `GET /api/v1/tasks`
 - `GET /api/v1/sessions`
 
 Próximos passos
-- Implementar autenticação com Supabase
-- Conectar controllers aos serviços que usam `supabaseClient`
+- Aplicar as policies de RLS no Supabase
+- Validar o fluxo completo de cadastro, login e CRUD com um usuario real

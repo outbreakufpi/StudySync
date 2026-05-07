@@ -1,5 +1,5 @@
-import { supabase } from './supabase-client.js';
-import { buildApiUrlAsync, TOKEN_KEY } from './runtime-config.js';
+import { supabase } from './supabase-client.js?v=20260507';
+import { buildApiUrlAsync, TOKEN_KEY } from './runtime-config.js?v=20260507';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('form');
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const email = form.querySelector('input[type="email"]').value.trim();
+    const email = form.querySelector('input[type="email"]').value.trim().toLowerCase().replace(/\s+/g, '');
     const password = form.querySelector('input[type="password"]').value;
 
     if (!email || !password) {
@@ -38,7 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = '/pages/home/index.html';
       }
     } catch (err) {
-      alert(err.message || 'Erro ao fazer login');
+      const message = String(err?.message || 'Erro ao fazer login');
+      if (message.toLowerCase().includes('rate limit')) {
+        alert('Muitas tentativas. Aguarde alguns minutos e tente novamente.');
+        return;
+      }
+      alert(message);
     }
   });
 });

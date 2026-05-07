@@ -1,4 +1,4 @@
-import { TOKEN_KEY } from './runtime-config.js';
+import { buildApiUrlAsync, TOKEN_KEY } from './runtime-config.js?v=20260507';
 
 function applyTheme(theme) {
   document.documentElement.classList.toggle('dark', theme === 'dark');
@@ -34,9 +34,20 @@ function loadSettingsPage() {
 
   const logoutButton = document.getElementById('settings-logout-button');
   if (logoutButton) {
-    logoutButton.addEventListener('click', () => {
-      localStorage.removeItem(TOKEN_KEY);
-      window.location.href = '../login/index.html';
+    logoutButton.addEventListener('click', async () => {
+      try {
+        const token = localStorage.getItem(TOKEN_KEY);
+        if (token) {
+          const url = await buildApiUrlAsync('/api/v1/auth/logout');
+          await fetch(url, {
+            method: 'POST',
+            headers: { Authorization: `Bearer ${token}` },
+          }).catch(() => null);
+        }
+      } finally {
+        localStorage.removeItem(TOKEN_KEY);
+        window.location.href = '../login/index.html';
+      }
     });
   }
 }

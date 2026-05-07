@@ -12,7 +12,7 @@
     <script src="../../assets/js/tailwind-config.js"></script>
     <link href="../../assets/css/style.css" rel="stylesheet"/>
 </head>
-<body class="bg-surface text-on-surface antialiased">
+<body class="bg-surface text-on-surface antialiased" data-mode="competitive">
     <!-- Mobile Sidebar Overlay -->
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-30 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
     
@@ -39,7 +39,7 @@
                 <span class="material-symbols-outlined">task_alt</span>
                 <span class="font-manrope text-sm font-medium tracking-wide">Tarefas</span>
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg" href="../dash-concurso/index.html">
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg" href="#stats-section" data-stats-link>
                 <span class="material-symbols-outlined">bar_chart</span>
                 <span class="font-manrope text-sm font-medium tracking-wide">Estatísticas</span>
             </a>
@@ -52,11 +52,11 @@
             <a class="mt-6 flex items-center gap-3 w-full text-left rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary" href="../perfil/index.html">
                 <img id="profile-avatar" alt="User Profile Avatar" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPb_72_qanFXiIlIWq_9_AYyCIj62sS-D60zTQbh2IvRO4FRjAWFuqCY9xS20uQsUT4Fp3Ur4y4jgSkStMaEI5aXAC5uxQnus50peASsfTArLwa0V_uKVhes-u2VtLqKzO1PS0LJQcdrLbA0ZPpptj4uJqrMOcGb3tEhMv3JqRDcsYKjrJX_yPQ3ki316hMOGUWplUUSkRxrDwwdTvrmCT2LHTOCFSxVgDdAHzxduo92VU4yfTm4AO6d_rk9adH-sciIqhI2mijnkv"/>
                 <div class="overflow-hidden">
-                    <p id="profile-name" class="text-sm font-bold truncate">Alex Rivera</p>
-                    <p id="profile-role" class="text-xs text-on-surface-variant">Candidato Elite</p>
+                    <p id="profile-name" class="text-sm font-bold truncate">Carregando...</p>
+                    <p id="profile-role" class="text-xs text-on-surface-variant"></p>
                 </div>
             </a>
-            <button class="w-full py-3 px-4 mt-4 bg-primary text-on-primary rounded-xl font-headline font-bold text-sm shadow-lg shadow-primary/20 flex items-center justify-center gap-2 active:scale-95 transition-all">
+            <button class="w-full py-3 px-4 mt-4 bg-primary text-on-primary rounded-xl font-headline font-bold text-sm shadow-lg shadow-primary/20 flex items-center justify-center gap-2 active:scale-95 transition-all" data-mode-switch>
                 <span class="material-symbols-outlined text-sm">auto_awesome</span>
                 Alternar Ambiente
             </button>
@@ -81,8 +81,8 @@
             </button>
             <a class="flex items-center gap-2 md:gap-3 cursor-pointer group" href="../perfil/index.html">
                 <div class="hidden md:block text-right">
-                    <p id="header-account-name" class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-teal-600 transition-colors">Alex Rivera</p>
-                    <p id="header-account-role" class="text-[10px] uppercase tracking-widest text-on-surface-variant">Candidato Elite</p>
+                    <p id="header-account-name" class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-teal-600 transition-colors">Minha conta</p>
+                    <p id="header-account-role" class="text-[10px] uppercase tracking-widest text-on-surface-variant"></p>
                 </div>
                 <span class="material-symbols-outlined text-2xl md:text-4xl text-slate-400">account_circle</span>
             </a>
@@ -103,6 +103,10 @@
             <button id="open-session-modal-btn" class="bg-primary text-on-primary px-6 md:px-8 py-3 md:py-4 rounded-xl font-headline font-extrabold flex items-center justify-center md:justify-start gap-3 shadow-[0_4px_20px_rgba(0,15,34,0.15)] hover:shadow-[0_4px_25px_rgba(0,15,34,0.25)] transition-all active:scale-95 text-sm md:text-base w-full md:w-auto">
                 <span class="material-symbols-outlined text-sm md:text-base" style="font-variation-settings: 'FILL' 1;">add_circle</span>
                 Registrar Sessão de Estudo
+            </button>
+            <button id="create-contest-subject-btn" class="bg-surface-container-low text-on-surface px-6 md:px-8 py-3 md:py-4 rounded-xl font-headline font-extrabold flex items-center justify-center md:justify-start gap-3 shadow-sm hover:bg-surface-container transition-all active:scale-95 text-sm md:text-base w-full md:w-auto">
+                <span class="material-symbols-outlined text-sm md:text-base">menu_book</span>
+                Nova Matéria
             </button>
         </header>
         
@@ -188,77 +192,49 @@
                         </div>
                     </div>
                     <div id="contest-simulated-list" class="space-y-3 md:space-y-4">
-                        <div class="p-3 md:p-4 bg-surface-container-low rounded-lg flex items-center justify-between">
-                            <div class="flex items-center gap-2 md:gap-3 min-w-0">
-                                <div class="w-8 md:w-10 h-8 md:h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold text-xs md:text-sm flex-shrink-0">RF</div>
-                                <div class="min-w-0">
-                                    <p class="text-xs md:text-sm font-bold truncate">Receita Federal</p>
-                                    <p class="text-[8px] md:text-[10px] text-on-surface-variant">Última Pontuação: 82%</p>
-                                </div>
-                            </div>
-                            <span class="material-symbols-outlined text-secondary text-sm flex-shrink-0">verified</span>
-                        </div>
+                        <div class="text-sm text-on-surface-variant">Carregando simulados...</div>
                     </div>
                 </div>
             </div>
             
             <div class="col-span-1 lg:col-span-4 space-y-6 md:space-y-8">
                 <div class="bg-surface-container-low rounded-xl p-6 md:p-8">
-                    <h3 class="text-base md:text-lg font-bold text-on-surface font-headline mb-4 md:mb-6">Distribuição de Maestria</h3>
-                    <div class="space-y-4 md:space-y-6">
+                    <div class="flex items-start justify-between gap-4 mb-4 md:mb-6">
                         <div>
-                            <div class="flex justify-between items-end mb-2">
-                                <span class="text-xs md:text-sm font-bold truncate">Direito Constitucional</span>
-                                <span class="text-[10px] text-on-surface-variant font-medium whitespace-nowrap">42h total</span>
-                            </div>
-                            <div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
-                                <div class="h-full bg-primary rounded-full" style="width: 75%"></div>
-                            </div>
+                            <h3 class="text-base md:text-lg font-bold text-on-surface font-headline">Distribuição por matéria</h3>
+                            <p class="text-xs md:text-sm text-on-surface-variant">Horas reais acumuladas nas disciplinas do modo concurso</p>
                         </div>
+                        <span class="text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant font-bold">Dados reais</span>
+                    </div>
+                    <div id="contest-mastery-list" class="space-y-4 md:space-y-6">
+                        <p class="text-sm text-on-surface-variant">Carregando distribuição...</p>
+                    </div>
+                </div>
+
+                <div class="bg-surface-container-low rounded-xl p-6 md:p-8">
+                    <div class="flex items-start justify-between gap-4 mb-4 md:mb-6">
                         <div>
-                            <div class="flex justify-between items-end mb-2">
-                                <span class="text-xs md:text-sm font-bold truncate">Direito Administrativo</span>
-                                <span class="text-[10px] text-on-surface-variant font-medium whitespace-nowrap">38h total</span>
-                            </div>
-                            <div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
-                                <div class="h-full bg-secondary rounded-full" style="width: 60%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between items-end mb-2">
-                                <span class="text-xs md:text-sm font-bold truncate">Português</span>
-                                <span class="text-[10px] text-on-surface-variant font-medium whitespace-nowrap">18h total</span>
-                            </div>
-                            <div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
-                                <div class="h-full bg-on-tertiary-container rounded-full" style="width: 35%"></div>
-                            </div>
+                            <h3 class="text-base md:text-lg font-bold text-on-surface font-headline">Resumo da última atividade</h3>
+                            <p class="text-xs md:text-sm text-on-surface-variant">Sem marco fictício, só o que foi registrado no sistema</p>
                         </div>
                     </div>
-                    <button class="w-full mt-8 md:mt-10  py-2 md:py-3 text-xs md:text-sm font-bold text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center gap-2">
-                        Ver Edital Detalhado
-                        <span class="material-symbols-outlined text-base">arrow_forward</span>
-                    </button>
-                </div>
-                
-                <div class="relative rounded-xl overflow-hidden aspect-[4/3] group shadow-xl">
-                    <img alt="Exame Deadline" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close-up of a high-end luxury watch on a desk next to focused study notes and a sleek black fountain pen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5rSilN2mLKHQ0nyb1n7DUDalUNXi_FQV34L7Wo4fZmrrnCuM1ixN0cseePZjHucm5tnDbkBAbVGDrNlLaMZjURa2k3q7oBjm-a6HCIxITegJt_w4WhRR7scr0u0iaM0XCJjdxRZuRUdarLF-fwujug5gGk_O-SXdOqeWh2VL04VvPAEMsE5RuF0fXoWMxoEWz96qDxmdoj0H71hqBwHGS13vmGi4sjnSuKOr5kCnnHlhl3BBqpaN7nB5xyiVPyHtPp4BVgrhmL5a2"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent"></div>
-                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end">
-                        <span class="bg-secondary text-on-secondary px-3 py-1 rounded-full text-[8px] md:text-[10px] font-bold uppercase tracking-widest self-start mb-2 md:mb-3">Próximo Marco Importante</span>
-                        <h4 class="text-lg md:text-2xl font-extrabold text-white font-headline leading-tight mb-1">Exame da Receita Federal</h4>
-                        <p class="text-primary-fixed text-xs md:text-sm mb-3 md:mb-4">Foco total. 42 dias restantes.</p>
-                        <div class="flex gap-2 md:gap-4 text-xs md:text-base">
-                            <div class="bg-white/10 backdrop-blur-md rounded-lg p-2 md:p-3 flex-1 text-center">
-                                <p class="text-xl font-bold text-white">42</p>
-                                <p class="text-[8px] md:text-[10px] uppercase font-bold text-primary-fixed">Dias</p>
+                    <div id="contest-focus-card" class="rounded-2xl bg-white/70 dark:bg-slate-950/40 p-4 md:p-5 space-y-4">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Última sessão</p>
+                            <p id="contest-last-session" class="text-base md:text-lg font-bold mt-2">Sem sessões registradas</p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="rounded-xl bg-surface-container-lowest p-3 text-center">
+                                <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Matéria</p>
+                                <p id="contest-focus-subject" class="text-sm font-bold mt-2 truncate">-</p>
                             </div>
-                            <div class="bg-white/10 backdrop-blur-md rounded-lg p-2 md:p-3 flex-1 text-center">
-                                <p class="text-xl font-bold text-white">14</p>
-                                <p class="text-[8px] md:text-[10px] uppercase font-bold text-primary-fixed">Hrs</p>
+                            <div class="rounded-xl bg-surface-container-lowest p-3 text-center">
+                                <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Duração</p>
+                                <p id="contest-focus-duration" class="text-sm font-bold mt-2">0h</p>
                             </div>
-                            <div class="bg-white/10 backdrop-blur-md rounded-lg p-2 md:p-3 flex-1 text-center">
-                                <p class="text-xl font-bold text-white">08</p>
-                                <p class="text-[8px] md:text-[10px] uppercase font-bold text-primary-fixed">Min</p>
+                            <div class="rounded-xl bg-surface-container-lowest p-3 text-center">
+                                <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Nota</p>
+                                <p id="contest-focus-score" class="text-sm font-bold mt-2">-</p>
                             </div>
                         </div>
                     </div>
@@ -266,9 +242,50 @@
                 
                 <div class="p-4 md:p-8 border-l-4 border-secondary bg-secondary/5 rounded-r-xl">
                     <p class="text-secondary font-headline font-bold italic text-base md:text-lg leading-relaxed">
-                        "A distância entre seus sonhos e a realidade se chama ação. Continue, <span id="concurso-quote-name">Alex</span>."
+                        "A distância entre seus sonhos e a realidade se chama ação. Continue, <span id="concurso-quote-name">você</span>."
                     </p>
                 </div>
+
+                <div id="contest-subjects-card" class="bg-surface-container-lowest rounded-xl p-6 md:p-8 shadow-sm md:col-span-2">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-4 md:mb-6">
+                        <div>
+                            <h3 class="text-base md:text-lg font-bold text-on-surface font-headline">Matérias de Estudo</h3>
+                            <p class="text-xs md:text-sm text-on-surface-variant">Selecione a matéria ao registrar sua sessão.</p>
+                        </div>
+                        <button id="create-contest-subject-btn-inline" class="text-sm font-bold text-secondary hover:underline self-start md:self-auto">Nova matéria</button>
+                    </div>
+                    <div id="contest-subjects-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="text-sm text-on-surface-variant">Carregando matérias...</div>
+                    </div>
+                </div>
+
+                <section id="stats-section" class="md:col-span-2 bg-white dark:bg-slate-900 rounded-[2rem] p-6 md:p-8 shadow-sm">
+                    <div class="flex items-center justify-between gap-4 mb-6">
+                        <div>
+                            <p class="text-[10px] md:text-xs uppercase tracking-[0.2em] text-secondary font-bold mb-2">Estatísticas</p>
+                            <h3 class="text-lg md:text-xl font-extrabold tracking-tight">Resumo do modo concurso</h3>
+                        </div>
+                        <span class="text-xs font-semibold text-on-surface-variant"><span id="contest-login-count">0</span> logins</span>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                        <div class="rounded-2xl bg-surface-container-low p-4">
+                            <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Horas</p>
+                            <p id="contest-stat-hours" class="text-2xl font-extrabold mt-2">0h</p>
+                        </div>
+                        <div class="rounded-2xl bg-surface-container-low p-4">
+                            <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Questões</p>
+                            <p id="contest-stat-questions" class="text-2xl font-extrabold mt-2">0</p>
+                        </div>
+                        <div class="rounded-2xl bg-surface-container-low p-4">
+                            <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Simulados</p>
+                            <p id="contest-stat-simulados" class="text-2xl font-extrabold mt-2">0</p>
+                        </div>
+                        <div class="rounded-2xl bg-surface-container-low p-4">
+                            <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Matérias</p>
+                            <p id="contest-stat-subjects" class="text-2xl font-extrabold mt-2">0</p>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
         
@@ -280,7 +297,7 @@
         </section>
     </main>
     
-    <script type="module" src="../../assets/js/mobile-nav.js"></script>
-    <script type="module" src="../../assets/js/dashboard.js"></script>
+    <script type="module" src="../../assets/js/mobile-nav.js?v=20260507"></script>
+    <script type="module" src="../../assets/js/dashboard.js?v=20260508"></script>
 </body>
 </html>

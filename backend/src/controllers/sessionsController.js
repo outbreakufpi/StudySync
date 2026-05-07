@@ -3,9 +3,10 @@ import { getAllSessionsForUser, createSessionForUser } from '../services/session
 export async function listSessions(req, res, next) {
   try {
     const userId = req.user && req.user.id;
-    if (!userId) return res.status(401).json({ error: 'Unauthorized' });
+    const client = req.user && req.user.client;
+    if (!userId || !client) return res.status(401).json({ error: 'Unauthorized' });
 
-    const data = await getAllSessionsForUser(userId);
+    const data = await getAllSessionsForUser(client, userId);
     return res.json({ data });
   } catch (err) {
     next(err);
@@ -15,7 +16,8 @@ export async function listSessions(req, res, next) {
 export async function addSession(req, res, next) {
   try {
     const userId = req.user && req.user.id;
-    if (!userId) return res.status(401).json({ error: 'Unauthorized' });
+    const client = req.user && req.user.client;
+    if (!userId || !client) return res.status(401).json({ error: 'Unauthorized' });
 
     const { started_at, ended_at } = req.body || {};
     if (!started_at || !ended_at) {
@@ -31,7 +33,7 @@ export async function addSession(req, res, next) {
       return res.status(400).json({ error: '"ended_at" must be greater than "started_at"' });
     }
 
-    const created = await createSessionForUser(userId, req.body || {});
+    const created = await createSessionForUser(client, userId, req.body || {});
     return res.status(201).json({ data: created });
   } catch (err) {
     next(err);

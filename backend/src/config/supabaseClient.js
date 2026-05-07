@@ -7,9 +7,22 @@ const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 // Default client using anon key (for user-scoped operations)
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+export function createSupabaseUserClient(accessToken) {
+	return createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+		global: {
+			headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+		},
+		auth: {
+			persistSession: false,
+			autoRefreshToken: false,
+			detectSessionInUrl: false,
+		},
+	});
+}
+
 // Admin client with service role (use carefully, server-side only)
 export const supabaseAdmin = SUPABASE_SERVICE_ROLE_KEY
 	? createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
-	: supabase;
+	: null;
 
 export default supabase;

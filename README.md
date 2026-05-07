@@ -11,7 +11,7 @@ StudySync é um painel de organização acadêmica para dois contextos:
 
 - Node.js 18+ ou superior
 - npm
-- uma conta no Supabase e um banco PostgreSQL válido para o Prisma
+- uma conta no Supabase com RLS configurado
 
 ### 2. Configurar o backend
 
@@ -22,23 +22,27 @@ cd backend
 npm install
 ```
 
-Crie o arquivo `backend/.env` com as variáveis abaixo:
+Se você já tem `backend/.env` configurado, não rode nenhum comando de cópia.
+Se ainda não existir, crie-o uma vez com:
+
+```bash
+cp .env.example .env
+```
+
+Depois preencha `backend/.env` com as variáveis abaixo:
 
 ```bash
 SUPABASE_URL=...
 SUPABASE_ANON_KEY=...
-SUPABASE_SERVICE_ROLE_KEY=...
-DATABASE_URL=...
-DIRECT_URL=...
 PORT=3001
 CORS_ORIGIN=http://localhost:5175
 ```
 
 Observações:
 
-- `SUPABASE_SERVICE_ROLE_KEY` pode ficar vazio se você não for usar rotinas administrativas.
-- `DATABASE_URL` deve apontar para a URL usada pelo Prisma.
-- `DIRECT_URL` deve apontar para a conexão direta do banco.
+- O fluxo principal agora usa Supabase direto para auth e persistência.
+- `DATABASE_URL` e `DIRECT_URL` podem ficar vazios se você não for usar scripts externos.
+- A tabela `public.profiles` precisa da policy de insert para o próprio usuário, definida em [frontend/docs/supabase-schema-sprint-08.sql](frontend/docs/supabase-schema-sprint-08.sql).
 
 Depois suba o backend:
 
@@ -54,7 +58,7 @@ Em outro terminal:
 
 ```bash
 cd frontend
-python3 -m http.server 5175
+npx --yes http-server . -p 5175
 ```
 
 Se a porta `5175` já estiver ocupada, use a aba já aberta do navegador ou escolha outra porta livre.

@@ -3,12 +3,17 @@ import authService from '../services/authService.js';
 export const signup = async (req, res) => {
   try {
     const { email, password, ...userData } = req.body;
+    const normalizedEmail = String(email || '').trim().toLowerCase().replace(/\s+/g, '');
 
-    if (!email || !password) {
+    if (!normalizedEmail || !password) {
       return res.status(400).json({ error: 'Email and password are required' });
     }
 
-    const result = await authService.signup(email, password, userData);
+    if (!/^\S+@\S+\.\S+$/.test(normalizedEmail)) {
+      return res.status(400).json({ error: 'Invalid email format' });
+    }
+
+    const result = await authService.signup(normalizedEmail, password, userData);
     res.status(201).json(result);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -18,12 +23,13 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    const normalizedEmail = String(email || '').trim().toLowerCase().replace(/\s+/g, '');
 
-    if (!email || !password) {
+    if (!normalizedEmail || !password) {
       return res.status(400).json({ error: 'Email and password are required' });
     }
 
-    const result = await authService.login(email, password);
+    const result = await authService.login(normalizedEmail, password);
     res.json(result);
   } catch (error) {
     res.status(401).json({ error: error.message });
@@ -74,5 +80,22 @@ export const validateSession = async (req, res) => {
     res.json(result);
   } catch (error) {
     res.status(401).json({ error: error.message });
+  }
+};
+
+export const me = validateSession;
+
+export const updateMe = async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ error: 'Missing authorization header' });
+    }
+
+    const accessToken = authHeader.replace('Bearer ', '').trim();
+    const result = await authService.updateMe(accessToken, req.body || {});
+    res.json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 };

@@ -154,8 +154,23 @@ ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 CREATE POLICY profiles_select_self_or_public ON public.profiles
   FOR SELECT USING (true);
 
+CREATE POLICY profiles_insert_self ON public.profiles
+  FOR INSERT WITH CHECK (auth.uid() IS NOT NULL AND auth.uid()::text = auth_uid);
+
 CREATE POLICY profiles_update_self ON public.profiles
   FOR UPDATE USING (auth.uid() IS NOT NULL AND auth.uid()::text = auth_uid) WITH CHECK (auth.uid() IS NOT NULL AND auth.uid()::text = auth_uid);
+
+CREATE POLICY profiles_claim_legacy ON public.profiles
+  FOR UPDATE USING (
+    auth.uid() IS NOT NULL
+    AND (
+      auth.uid()::text = auth_uid
+      OR (auth_uid IS NULL AND lower(email) = lower(auth.jwt() ->> 'email'))
+    )
+  ) WITH CHECK (
+    auth.uid() IS NOT NULL
+    AND auth.uid()::text = auth_uid
+  );
 
 -- Subjects
 CREATE POLICY subjects_select_own ON public.subjects

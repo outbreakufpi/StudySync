@@ -1,4 +1,4 @@
-import { supabase } from './supabase-client.js';
+import { supabase } from './supabase-client.js?v=20260507';
 
 document.addEventListener('DOMContentLoaded', () => {
   const requestForm = document.getElementById('recovery-request-form');
