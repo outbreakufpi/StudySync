@@ -163,24 +163,10 @@
                 <div class="bg-surface-container-lowest rounded-xl p-6 md:p-8 shadow-sm flex flex-col items-center text-center">
                     <h3 class="text-base md:text-lg font-bold text-on-surface font-headline mb-1">Questões Respondidas</h3>
                     <p class="text-xs md:text-sm text-on-surface-variant mb-4 md:mb-6">Meta: 500/semana</p>
-                    <div class="relative w-40 h-40 mb-6 flex items-center justify-center">
-                        <svg class="w-full h-full -rotate-90">
-                            <circle cx="80" cy="80" fill="transparent" r="70" stroke="#eaeef2" stroke-width="12"></circle>
-                            <circle cx="80" cy="80" fill="transparent" r="70" stroke="#006a60" stroke-dasharray="440" stroke-dashoffset="110" stroke-linecap="round" stroke-width="12"></circle>
-                        </svg>
-                        <div class="absolute inset-0 flex flex-col items-center justify-center">
-                            <span id="contest-questions-total" class="text-3xl font-extrabold font-headline">0</span>
-                            <span id="contest-questions-rate" class="text-[10px] uppercase font-bold text-secondary">0% Concluído</span>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4 w-full">
-                        <div class="text-left">
-                            <p class="text-[10px] uppercase font-bold text-on-surface-variant mb-1">Corretas</p>
-                            <p id="contest-questions-correct" class="text-sm font-bold text-secondary">0</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-[10px] uppercase font-bold text-on-surface-variant mb-1">Incorretas</p>
-                            <p id="contest-questions-wrong" class="text-sm font-bold text-error">0</p>
+                    <div class="relative w-full max-w-xs min-h-[220px] flex items-center justify-center rounded-[2rem] bg-surface-container-highest/40">
+                        <div class="flex flex-col items-center justify-center px-4 py-6">
+                            <span id="contest-questions-total" class="text-5xl md:text-6xl font-extrabold font-headline leading-none text-on-surface">0</span>
+                            <span class="mt-2 text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold text-secondary">Questões totais registradas</span>
                         </div>
                     </div>
                 </div>

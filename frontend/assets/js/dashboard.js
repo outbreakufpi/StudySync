@@ -878,26 +878,16 @@ function renderContestMetrics(sessions) {
   const totalHours = (totalMinutes / 60).toFixed(totalMinutes % 60 === 0 ? 0 : 1);
   const totalQuestions = sessions.reduce((sum, session) => sum + Number(session?.questions_answered || 0), 0);
   const totalSimulados = sessions.filter((session) => session?.metadata?.is_simulado || session?.metadata?.simulado || session?.metadata?.score != null).length;
-  const scoredSessions = sessions.filter((session) => Number.isFinite(Number(session?.metadata?.score)));
-  const averageScore = scoredSessions.length
-    ? Math.round(scoredSessions.reduce((sum, session) => sum + Number(session.metadata.score || 0), 0) / scoredSessions.length)
-    : Math.min(100, Math.round((totalQuestions / Math.max(1, totalQuestions + 40)) * 100));
 
   const totalHoursEl = document.getElementById('contest-total-hours');
   const questionsTotalEl = document.getElementById('contest-questions-total');
-  const questionsRateEl = document.getElementById('contest-questions-rate');
-  const questionsCorrectEl = document.getElementById('contest-questions-correct');
-  const questionsWrongEl = document.getElementById('contest-questions-wrong');
   const simulatedCountEl = document.getElementById('contest-simulated-count');
   const simulatedScoreEl = document.getElementById('contest-simulated-score');
 
   if (totalHoursEl) totalHoursEl.textContent = `${totalHours}h`;
   if (questionsTotalEl) questionsTotalEl.textContent = `${totalQuestions}`;
-  if (questionsRateEl) questionsRateEl.textContent = `${averageScore}% Concluído`;
-  if (questionsCorrectEl) questionsCorrectEl.textContent = `${Math.round(totalQuestions * (averageScore / 100))}`;
-  if (questionsWrongEl) questionsWrongEl.textContent = `${Math.max(totalQuestions - Math.round(totalQuestions * (averageScore / 100)), 0)}`;
   if (simulatedCountEl) simulatedCountEl.textContent = `${totalSimulados} simulados`;
-  if (simulatedScoreEl) simulatedScoreEl.textContent = totalSimulados ? `Média ${averageScore}%` : 'Sem simulados';
+  if (simulatedScoreEl) simulatedScoreEl.textContent = totalSimulados ? 'Sessões com nota registradas' : 'Sem simulados';
 }
 
 function renderContestSimulados(sessions, subjectLookup = new Map()) {
