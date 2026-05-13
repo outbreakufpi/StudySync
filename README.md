@@ -36,11 +36,22 @@ SUPABASE_URL=...
 SUPABASE_ANON_KEY=...
 PORT=3001
 CORS_ORIGIN=http://localhost:5175
+FRONTEND_URL=http://localhost:5175
+SUPABASE_SERVICE_ROLE_KEY=...
 ```
+
+Variáveis do `backend/.env`:
+
+- `PORT`: porta em que o backend Express será servido. O padrão sugerido é `3001`.
+- `CORS_ORIGIN`: origem permitida para requisições do frontend. Normalmente `http://localhost:5175` durante o desenvolvimento.
+- `FRONTEND_URL`: URL do frontend usada pelo backend para validações de CORS e redirecionamentos.
+- `SUPABASE_URL`: URL do projeto Supabase. Encontre no painel do Supabase em Settings → API.
+- `SUPABASE_ANON_KEY`: chave pública do Supabase para uso no frontend/backend. Encontre em Settings → API, seção `anon key`.
+- `SUPABASE_SERVICE_ROLE_KEY`: chave de serviço privada do Supabase com permissões administrativas. Use apenas no backend e mantenha confidencial. É necessária apenas para operações administrativas e scripts de seed.
 
 Observações:
 
-- O fluxo principal agora usa Supabase direto para auth e persistência.
+- O fluxo principal usa Supabase direto para auth e persistência.
 - `DATABASE_URL` e `DIRECT_URL` podem ficar vazios se você não for usar scripts externos.
 - A tabela `public.profiles` precisa da policy de insert para o próprio usuário, definida em [frontend/docs/supabase-schema-sprint-08.sql](frontend/docs/supabase-schema-sprint-08.sql).
 
@@ -52,7 +63,7 @@ npm run dev
 
 Se a porta `3001` já estiver ocupada, reutilize a instância que já está rodando ou libere o processo antigo.
 
-### 3. Subir o frontend
+### 3. Servir o frontend estático
 
 Em outro terminal:
 
@@ -81,6 +92,12 @@ Fluxo sugerido de teste:
 8. Registrar uma sessão de estudo e conferir horas, questões, simulados e sessões recentes.
 9. Abrir Perfil e Configurações para validar dados do usuário e logout.
 
+### Troubleshooting rápido
+
+- Erro `401 Unauthorized`: verifique se o token de acesso está presente em `localStorage` e se o backend está rodando em `http://localhost:3001`. Se estiver usando múltiplas abas, faça logout e login novamente.
+- Problemas de CORS: confirme se `CORS_ORIGIN` e `FRONTEND_URL` em `backend/.env` estão configurados para a URL exata do frontend, por exemplo `http://localhost:5175`.
+- Porta ocupada `3001` ou `5175`: feche processos antigos ou escolha outra porta livre e atualize `backend/.env` e o comando do `http-server`.
+
 ## O que já está coberto
 
 - login, registro e troca de modo
@@ -104,4 +121,3 @@ Se alguém quiser testar sem abrir o projeto inteiro no editor, o caminho é est
 3. abrir a página de login
 4. criar conta ou entrar
 5. navegar entre os dois modos e testar os fluxos acima
-
