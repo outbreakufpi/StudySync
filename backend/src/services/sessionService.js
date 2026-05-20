@@ -1,5 +1,6 @@
 import { supabaseAdmin } from '../config/supabaseClient.js';
 
+// Session service functions for reading and writing study session data.
 function normalizeError(error) {
 	if (!error) return null;
 	const normalized = new Error(error.message || 'Database error');

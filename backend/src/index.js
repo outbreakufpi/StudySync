@@ -1,6 +1,7 @@
 import './env.js';
 import app from './app.js';
 
+// Load environment variables and start the Express server.
 const PORT = Number(process.env.PORT || 3001);
 
 const server = app.listen(PORT, () => {

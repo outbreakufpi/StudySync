@@ -1,5 +1,6 @@
 import { getAllSubjectsForUser, createSubject, updateSubjectForUser, deleteSubjectForUser } from '../services/subjectService.js';
 
+// Controller for subject-related routes.
 export async function listSubjects(req, res, next) {
   try {
     const userId = req.user && req.user.id;

@@ -1,6 +1,7 @@
 import { supabase, supabaseAdmin, createSupabaseUserClient } from '../config/supabaseClient.js';
 import { ensureProfile, recordLoginMetadata } from './userContext.js';
 
+// Business logic for authentication and session actions.
 export class AuthService {
   // Signup: Create a new user
   async signup(email, password, userData = {}) {

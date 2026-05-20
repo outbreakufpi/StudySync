@@ -1,5 +1,6 @@
 import { supabaseAdmin } from '../config/supabaseClient.js';
 
+// Subject service functions for CRUD operations on subjects.
 function normalizeOrderError(error) {
 	if (!error) return null;
 	const normalized = new Error(error.message || 'Database error');

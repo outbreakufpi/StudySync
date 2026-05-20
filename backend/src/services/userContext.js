@@ -1,5 +1,6 @@
 import { supabaseAdmin, createSupabaseUserClient } from '../config/supabaseClient.js';
 
+// Helpers to synchronize Supabase auth users with the profiles table.
 function buildProfilePayload(authUser) {
 	const metadata = authUser?.user_metadata || {};
 	const authUid = authUser?.id;

@@ -6,6 +6,7 @@ import authRouter from './auth.js';
 
 const router = express.Router();
 
+// Mount resource-specific v1 routes.
 router.use('/subjects', subjectsRouter);
 router.use('/tasks', tasksRouter);
 router.use('/sessions', sessionsRouter);

@@ -1,3 +1,4 @@
+// Global error handler used by the Express app.
 export function errorHandler(err, req, res, next) {
   console.error(err);
   const status = err.status || 500;

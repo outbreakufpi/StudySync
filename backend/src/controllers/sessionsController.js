@@ -1,5 +1,6 @@
 import { getAllSessionsForUser, createSessionForUser } from '../services/sessionService.js';
 
+// Controller for study session routes.
 export async function listSessions(req, res, next) {
   try {
     const userId = req.user && req.user.id;

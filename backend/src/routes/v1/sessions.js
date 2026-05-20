@@ -3,6 +3,7 @@ import { listSessions, addSession } from '../../controllers/sessionsController.j
 import { requireAuth } from '../../middlewares/authMiddleware.js';
 
 const router = express.Router();
+// Protected session routes for study session tracking.
 
 router.get('/', requireAuth, listSessions);
 router.post('/', requireAuth, addSession);

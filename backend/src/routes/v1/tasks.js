@@ -3,6 +3,7 @@ import { listTasks, addTask, updateTask, removeTask } from '../../controllers/ta
 import { requireAuth } from '../../middlewares/authMiddleware.js';
 
 const router = express.Router();
+// Protected task routes for CRUD operations.
 
 router.get('/', requireAuth, listTasks);
 router.post('/', requireAuth, addTask);

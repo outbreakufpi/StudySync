@@ -2,6 +2,7 @@ import express from 'express';
 import { signup, login, logout, resetPassword, validateSession, me, updateMe } from '../../controllers/authController.js';
 
 const router = express.Router();
+// Routes for user authentication and session management.
 
 // POST /api/v1/auth/signup
 router.post('/signup', signup);

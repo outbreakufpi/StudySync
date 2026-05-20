@@ -2,6 +2,7 @@ import supabase from '../config/supabaseClient.js';
 import { createSupabaseUserClient } from '../config/supabaseClient.js';
 import { ensureProfile } from '../services/userContext.js';
 
+// Middleware that checks the request bearer token and loads user profile.
 export async function requireAuth(req, res, next) {
   try {
     const authHeader = req.headers.authorization;

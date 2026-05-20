@@ -3,6 +3,7 @@ import { listSubjects, addSubject, updateSubject, removeSubject } from '../../co
 import { requireAuth } from '../../middlewares/authMiddleware.js';
 
 const router = express.Router();
+// Protected subject routes for CRUD operations.
 
 router.get('/', requireAuth, listSubjects);
 router.post('/', requireAuth, addSubject);

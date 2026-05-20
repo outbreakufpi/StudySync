@@ -1,5 +1,6 @@
 import { supabaseAdmin } from '../config/supabaseClient.js';
 
+// Task service functions for task CRUD and querying.
 function normalizeError(error) {
 	if (!error) return null;
 	const normalized = new Error(error.message || 'Database error');

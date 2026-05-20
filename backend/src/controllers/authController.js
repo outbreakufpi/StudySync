@@ -1,5 +1,6 @@
 import authService from '../services/authService.js';
 
+// Controller actions for authentication endpoints.
 export const signup = async (req, res) => {
   try {
     const { email, password, ...userData } = req.body;

@@ -1,5 +1,6 @@
 import { getAllTasksForUser, createTaskForUser, updateTaskForUser, deleteTaskForUser } from '../services/taskService.js';
 
+// Controller for task-related routes.
 export async function listTasks(req, res, next) {
   try {
     const userId = req.user && req.user.id;

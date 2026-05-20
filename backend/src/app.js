@@ -4,8 +4,10 @@ import morgan from 'morgan';
 import apiRouter from './routes/index.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
+// Create the main Express application and set up global middleware.
 const app = express();
 
+// Build the list of allowed CORS origins from environment variables.
 const allowedOrigins = new Set(
 	[process.env.CORS_ORIGIN, process.env.FRONTEND_URL]
 		.filter(Boolean)
@@ -29,6 +31,7 @@ const allowedOrigins = new Set(
 		})
 );
 
+// Allow or deny cross-origin requests based on the computed origins list.
 app.use(
 	cors({
 		origin(origin, callback) {
@@ -36,7 +39,6 @@ app.use(
 				callback(null, true);
 				return;
 			}
-
 			if (allowedOrigins.size === 0 || allowedOrigins.has(origin)) {
 				callback(null, true);
 				return;
