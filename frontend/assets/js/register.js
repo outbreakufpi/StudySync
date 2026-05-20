@@ -1,4 +1,3 @@
-import { supabase } from './supabase-client.js?v=20260507';
 import { buildApiUrlAsync, TOKEN_KEY } from './runtime-config.js?v=20260507';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -6,6 +5,26 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!form) return;
   const submitButton = form.querySelector('button[type="submit"]');
   let isSubmitting = false;
+
+  async function postJson(pathname, payload) {
+    const url = await buildApiUrlAsync(pathname);
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      const message = body?.error || 'Erro ao processar requisição';
+      const err = new Error(message);
+      err.status = res.status;
+      err.body = body;
+      throw err;
+    }
+
+    return body;
+  }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -32,24 +51,16 @@ document.addEventListener('DOMContentLoaded', () => {
         submitButton.textContent = 'Cadastrando...';
       }
 
-      // Use Supabase Auth directly
-      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+      // Prefer backend signup to avoid Supabase rate limiting on the client.
+      await postJson('/api/v1/auth/signup', {
         email,
         password,
-        options: { data: { full_name: fullName } }
+        full_name: fullName || null,
       });
-      if (signUpError) throw signUpError;
 
-      // Try to sign in immediately to obtain session and create profile via backend
-      const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({ email, password });
-      if (signInError) {
-        // If sign in failed (e.g., confirmation required), just redirect to login with message
-        alert('Conta criada. Verifique seu e-mail para confirmar o cadastro antes de entrar.');
-        window.location.replace('/pages/login/index.html');
-        return;
-      }
-
-      const accessToken = signInData?.session?.access_token;
+      // Auto-login via backend to obtain a valid access token
+      const loginResult = await postJson('/api/v1/auth/login', { email, password });
+      const accessToken = loginResult?.session?.access_token;
       if (accessToken) {
         localStorage.setItem(TOKEN_KEY, accessToken);
         // call backend to ensure profile exists
@@ -62,8 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } catch (err) {
       const message = String(err?.message || 'Erro ao cadastrar');
-      if (message.toLowerCase().includes('rate limit')) {
-        alert('Muitas tentativas de cadastro. Aguarde alguns minutos e tente novamente, ou use outro e-mail.');
+      const normalized = message.toLowerCase();
+      if (normalized.includes('rate limit') || normalized.includes('too many') || normalized.includes('muitas tentativas')) {
+        alert('Muitas tentativas de cadastro. Aguarde alguns minutos e tente novamente, ou crie o usuário manualmente no Supabase Auth.');
         return;
       }
       alert(message);
