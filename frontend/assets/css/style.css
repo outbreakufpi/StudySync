@@ -15,3 +15,8 @@ h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
     background-image: radial-gradient(circle at 2px 2px, #eaeef2 1px, transparent 0);
     background-size: 40px 40px;
 }
+
+/* Ensure dashboard modals always appear above fixed headers/FABs */
+#create-subject-modal {
+    z-index: 1000;
+}
