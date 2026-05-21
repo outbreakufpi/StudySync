@@ -11,6 +11,12 @@ const { supabase, supabaseAdmin } = await import('../src/config/supabaseClient.j
 
 const supabaseClient = supabaseAdmin || supabase;
 const activeClient = supabaseAdmin ? 'supabaseAdmin (service role)' : 'supabase (anon key)';
+
+/**
+ * Identificador único para dados de teste
+ * Permite isolar dados e reutilizar sem conflitos
+ * @type {string}
+ */
 const TEST_USER_UID = 'test-auth-uid-001';
 
 async function run() {
