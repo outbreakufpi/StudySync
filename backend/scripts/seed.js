@@ -7,7 +7,7 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
 const outPath = path.resolve(process.cwd(), 'scripts', 'seed.sql');
 
-// Basic example seed with users, profiles, subjects, tasks, sessions
+// Dados de teste idempotentes para o StudySync
 const sql = `-- StudySync seed data
 
 -- Users (created via Supabase auth normally)
