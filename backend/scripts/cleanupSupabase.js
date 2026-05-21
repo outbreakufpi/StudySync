@@ -10,8 +10,18 @@ dotenv.config({ path: envPath });
 const { supabase, supabaseAdmin } = await import('../src/config/supabaseClient.js');
 const supabaseClient = supabaseAdmin || supabase;
 const activeClient = supabaseAdmin ? 'supabaseAdmin (service role)' : 'supabase (anon key)';
+
+/**
+ * Identificador único dos dados de teste a remover
+ * @type {string}
+ */
 const TEST_USER_UID = 'test-auth-uid-001';
 
+/**
+ * Executa a limpeza de dados de teste
+ * @async
+ * @function
+ */
 async function run() {
   console.log('--- Supabase cleanup script ---');
   console.log('Usando cliente:', activeClient);
