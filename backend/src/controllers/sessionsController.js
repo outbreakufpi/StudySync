@@ -1,6 +1,6 @@
 import { getAllSessionsForUser, createSessionForUser } from '../services/sessionService.js';
 
-// Controller for study session routes.
+// Retorna todas as sessões de estudo do usuário
 export async function listSessions(req, res, next) {
   try {
     const userId = req.user && req.user.id;
@@ -14,6 +14,7 @@ export async function listSessions(req, res, next) {
   }
 }
 
+// Registra uma nova sessão de estudo
 export async function addSession(req, res, next) {
   try {
     const userId = req.user && req.user.id;
