@@ -1,6 +1,6 @@
 import { getAllSubjectsForUser, createSubject, updateSubjectForUser, deleteSubjectForUser } from '../services/subjectService.js';
 
-// Controller for subject-related routes.
+// Retorna todas as disciplinas do usuário
 export async function listSubjects(req, res, next) {
   try {
     const userId = req.user && req.user.id;
@@ -14,6 +14,7 @@ export async function listSubjects(req, res, next) {
   }
 }
 
+// Cria uma nova disciplina
 export async function addSubject(req, res, next) {
   try {
     const userId = req.user && req.user.id;
@@ -27,6 +28,7 @@ export async function addSubject(req, res, next) {
   }
 }
 
+// Atualiza uma disciplina existente
 export async function updateSubject(req, res, next) {
   try {
     const userId = req.user && req.user.id;
@@ -41,6 +43,7 @@ export async function updateSubject(req, res, next) {
   }
 }
 
+// Deleta uma disciplina
 export async function removeSubject(req, res, next) {
   try {
     const userId = req.user && req.user.id;
