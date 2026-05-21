@@ -1,6 +1,6 @@
 import { getAllTasksForUser, createTaskForUser, updateTaskForUser, deleteTaskForUser } from '../services/taskService.js';
 
-// Controller for task-related routes.
+// Retorna todas as tarefas do usuário
 export async function listTasks(req, res, next) {
   try {
     const userId = req.user && req.user.id;
@@ -14,6 +14,7 @@ export async function listTasks(req, res, next) {
   }
 }
 
+// Cria uma nova tarefa
 export async function addTask(req, res, next) {
   try {
     const userId = req.user && req.user.id;
@@ -36,6 +37,7 @@ export async function addTask(req, res, next) {
   }
 }
 
+// Atualiza uma tarefa existente
 export async function updateTask(req, res, next) {
   try {
     const userId = req.user && req.user.id;
@@ -50,6 +52,7 @@ export async function updateTask(req, res, next) {
   }
 }
 
+// Deleta uma tarefa
 export async function removeTask(req, res, next) {
   try {
     const userId = req.user && req.user.id;
