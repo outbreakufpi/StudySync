@@ -60,7 +60,9 @@ async function fetchTasks() {
     });
 
     if (res.status === 401) {
-      container.innerHTML = "<p class=\"text-sm text-on-surface-variant\">Token inválido ou expirado. Faça login novamente.</p>";
+      localStorage.removeItem(TOKEN_KEY);
+      // Redirect to login preserving current path
+      try { window.location.replace(`/pages/login/index.html?redirect=${encodeURIComponent(window.location.pathname + window.location.search + window.location.hash)}`); } catch(e) { window.location.href = '/pages/login/index.html'; }
       return;
     }
 

@@ -3,6 +3,9 @@ import cors from 'cors';
 import morgan from 'morgan';
 import apiRouter from './routes/index.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { requireAuth } from './middlewares/authMiddleware.js';
 
 // Create the main Express application and set up global middleware.
 const app = express();
@@ -53,6 +56,37 @@ app.use(morgan('dev'));
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 app.use('/api', apiRouter);
+
+// Serve frontend static assets publicly (JS/CSS/images)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const frontendDir = path.resolve(__dirname, '../../frontend');
+
+app.use('/assets', express.static(path.join(frontendDir, 'assets')));
+
+// Protected pages — require authentication before serving
+app.get('/pages/home/*', requireAuth, (req, res) => {
+	res.sendFile(path.join(frontendDir, 'pages', 'home', 'index.html'));
+});
+
+app.get('/pages/dash-universidade/*', requireAuth, (req, res) => {
+	res.sendFile(path.join(frontendDir, 'pages', 'dash-universidade', 'index.html'));
+});
+
+app.get('/pages/dash-concurso/*', requireAuth, (req, res) => {
+	res.sendFile(path.join(frontendDir, 'pages', 'dash-concurso', 'index.html'));
+});
+
+app.get('/pages/perfil/*', requireAuth, (req, res) => {
+	res.sendFile(path.join(frontendDir, 'pages', 'perfil', 'index.html'));
+});
+
+app.get('/pages/configuracoes/*', requireAuth, (req, res) => {
+	res.sendFile(path.join(frontendDir, 'pages', 'configuracoes', 'index.html'));
+});
+
+// Serve any other frontend files (public pages like login)
+app.use(express.static(frontendDir));
 
 app.use(errorHandler);
 

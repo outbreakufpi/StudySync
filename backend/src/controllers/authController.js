@@ -31,6 +31,24 @@ export const login = async (req, res) => {
     }
 
     const result = await authService.login(normalizedEmail, password);
+    // Set HttpOnly cookie with access token for browser navigations
+    try {
+      const accessToken = result.session?.access_token || '';
+      const expiresAt = result.session?.expires_at ? Number(result.session.expires_at) * 1000 : null; // seconds -> ms
+      const maxAge = expiresAt ? Math.max(0, expiresAt - Date.now()) : 60 * 60 * 1000; // default 1h
+      if (accessToken) {
+        res.cookie('access_token', accessToken, {
+          httpOnly: true,
+          sameSite: 'lax',
+          secure: process.env.NODE_ENV === 'production',
+          maxAge,
+          path: '/',
+        });
+      }
+    } catch (e) {
+      // non-fatal
+    }
+
     res.json(result);
   } catch (error) {
     res.status(401).json({ error: error.message });
@@ -39,14 +57,20 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
   try {
+    // accept token from header or cookie
     const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.status(401).json({ error: 'Missing authorization header' });
+    const tokenFromHeader = authHeader && authHeader.startsWith('Bearer ') ? authHeader.replace('Bearer ', '').trim() : '';
+    const cookieHeader = req.headers.cookie || '';
+    const cookieToken = (cookieHeader.split(';').map(c => c.trim()).find(c => c.startsWith('access_token=')) || '').split('=')[1] || '';
+    const accessToken = tokenFromHeader || cookieToken;
+
+    if (!accessToken) {
+      return res.status(401).json({ error: 'Missing authorization token' });
     }
 
-    const accessToken = authHeader.replace('Bearer ', '').trim();
-
     const result = await authService.logout(accessToken);
+    // clear cookie
+    res.clearCookie('access_token', { path: '/' });
     res.json(result);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -70,12 +94,16 @@ export const resetPassword = async (req, res) => {
 
 export const validateSession = async (req, res) => {
   try {
+    // accept token from header or cookie for validation
     const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.status(401).json({ error: 'Missing authorization header' });
-    }
+    const tokenFromHeader = authHeader && authHeader.startsWith('Bearer ') ? authHeader.replace('Bearer ', '').trim() : '';
+    const cookieHeader = req.headers.cookie || '';
+    const cookieToken = (cookieHeader.split(';').map(c => c.trim()).find(c => c.startsWith('access_token=')) || '').split('=')[1] || '';
+    const accessToken = tokenFromHeader || cookieToken;
 
-    const accessToken = authHeader.replace('Bearer ', '').trim();
+    if (!accessToken) {
+      return res.status(401).json({ error: 'Missing authorization token' });
+    }
 
     const result = await authService.validateSession(accessToken);
     res.json(result);
@@ -89,11 +117,11 @@ export const me = validateSession;
 export const updateMe = async (req, res) => {
   try {
     const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.status(401).json({ error: 'Missing authorization header' });
-    }
-
-    const accessToken = authHeader.replace('Bearer ', '').trim();
+    const tokenFromHeader = authHeader && authHeader.startsWith('Bearer ') ? authHeader.replace('Bearer ', '').trim() : '';
+    const cookieHeader = req.headers.cookie || '';
+    const cookieToken = (cookieHeader.split(';').map(c => c.trim()).find(c => c.startsWith('access_token=')) || '').split('=')[1] || '';
+    const accessToken = tokenFromHeader || cookieToken;
+    if (!accessToken) return res.status(401).json({ error: 'Missing authorization token' });
     const result = await authService.updateMe(accessToken, req.body || {});
     res.json(result);
   } catch (error) {
