@@ -2,10 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import apiRouter from './routes/index.js';
+import swaggerUi from 'swagger-ui-express';
 import { errorHandler } from './middlewares/errorHandler.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { requireAuth } from './middlewares/authMiddleware.js';
+import openapiDocument from './docs/openapi.js';
 
 // Create the main Express application and set up global middleware.
 const app = express();
@@ -53,6 +55,9 @@ app.use(
 );
 app.use(express.json());
 app.use(morgan('dev'));
+
+app.get('/api/openapi.json', (req, res) => res.json(openapiDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiDocument, { explorer: true }));
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 app.use('/api', apiRouter);

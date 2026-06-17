@@ -50,6 +50,11 @@ Principais arquivos
 - `src/services/` - lógica de negócio
 - `src/middlewares/` - middlewares (auth, error handler)
 
+Documentação da API
+- Swagger UI: `http://localhost:3001/api-docs`
+- OpenAPI JSON: `http://localhost:3001/api/openapi.json`
+- A documentação cobre as rotas `health`, `api`, `api/v1/auth`, `api/v1/subjects`, `api/v1/tasks` e `api/v1/sessions`.
+
 Rotas stub disponíveis
 - `GET /health`
 - `GET /api/v1/auth/me`
